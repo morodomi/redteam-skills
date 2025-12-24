@@ -95,6 +95,62 @@ security-scan出力のJSON形式を入力として受け取る。
 - Markdown形式のみ（HTML/PDF出力は未対応）
 - 単一スキャン結果のみ（履歴比較は未対応）
 
+## CVSS 4.0 Vector Mapping
+
+脆弱性タイプからCVSS 4.0 Base Scoreを算出。
+
+| Vulnerability Type | CVSS 4.0 Vector | Score |
+|-------------------|-----------------|-------|
+| sql-injection | CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N | 9.3 |
+| xss-reflected | CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:A/VC:L/VI:L/VA:N/SC:L/SI:L/SA:N | 5.1 |
+| xss-stored | CVSS:4.0/AV:N/AC:L/AT:N/PR:L/UI:P/VC:H/VI:H/VA:N/SC:L/SI:L/SA:N | 7.2 |
+| hardcoded-credentials | CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:N/SC:N/SI:N/SA:N | 9.1 |
+| missing-auth | CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:N/SC:N/SI:N/SA:N | 9.1 |
+| broken-access-control | CVSS:4.0/AV:N/AC:L/AT:N/PR:L/UI:N/VC:H/VI:H/VA:N/SC:N/SI:N/SA:N | 8.5 |
+| mass-assignment | CVSS:4.0/AV:N/AC:L/AT:N/PR:L/UI:N/VC:H/VI:H/VA:N/SC:N/SI:N/SA:N | 8.5 |
+| bola | CVSS:4.0/AV:N/AC:L/AT:N/PR:L/UI:N/VC:H/VI:L/VA:N/SC:N/SI:N/SA:N | 7.1 |
+| rate-limiting-missing | CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N | 5.3 |
+| excessive-data-exposure | CVSS:4.0/AV:N/AC:L/AT:N/PR:L/UI:N/VC:H/VI:N/VA:N/SC:N/SI:N/SA:N | 6.5 |
+
+### Agent to Type Mapping
+
+| Agent | Default Type |
+|-------|--------------|
+| injection-attacker | sql-injection |
+| xss-attacker | xss-reflected |
+| auth-attacker | hardcoded-credentials |
+| api-attacker | mass-assignment |
+
+## CWE/OWASP Mapping
+
+| Type | CWE | OWASP |
+|------|-----|-------|
+| sql-injection | CWE-89 | A03:2021 |
+| xss-reflected | CWE-79 | A03:2021 |
+| xss-stored | CWE-79 | A03:2021 |
+| hardcoded-credentials | CWE-798 | A07:2021 |
+| missing-auth | CWE-306 | A07:2021 |
+| broken-access-control | CWE-862 | A01:2021 |
+| mass-assignment | CWE-915 | API3:2023 |
+| bola | CWE-639 | API1:2023 |
+| rate-limiting-missing | CWE-770 | API4:2023 |
+| excessive-data-exposure | CWE-200 | API3:2023 |
+
+## Link Templates
+
+参照リンクの生成テンプレート。
+
+```
+CWE: https://cwe.mitre.org/data/definitions/{ID}.html
+OWASP Top 10: https://owasp.org/Top10/2021/A{XX}_{YYYY}-{Name}/
+OWASP API: https://owasp.org/API-Security/editions/2023/en/0xa{X}-{kebab-case-name}/
+```
+
+例:
+- https://cwe.mitre.org/data/definitions/89.html
+- https://owasp.org/Top10/2021/A03_2021-Injection/
+- https://owasp.org/API-Security/editions/2023/en/0xa1-broken-object-level-authorization/
+
 ## References
 
 - [security-scan](../security-scan/SKILL.md)

@@ -43,7 +43,7 @@ security-scan が出力するJSON形式を入力として受け取る。
 
 ## Output Format
 
-Markdown形式のレポートを生成。
+Markdown形式のレポートを生成。脆弱性はCVSSスコア降順でソートされる。
 
 ### Report Structure
 
@@ -78,8 +78,13 @@ Markdown形式のレポートを生成。
 ### High (2)
 
 #### [SQLI-001] SQL Injection
+- **CVSS 4.0**: 9.3 (Critical)
+- **Vector**: `CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N`
 - **File**: app/Controllers/UserController.php:45
 - **Agent**: injection-attacker
+- **References**:
+  - [CWE-89](https://cwe.mitre.org/data/definitions/89.html)
+  - [OWASP A03:2021](https://owasp.org/Top10/2021/A03_2021-Injection/)
 - **Description**: User input concatenated in SQL query
 - **Remediation**: Use parameterized queries or ORM
 
