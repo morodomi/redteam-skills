@@ -18,7 +18,7 @@
 | 2 | recon-agent: 偵察エージェント実装 | Done |
 | 3 | injection-attacker: SQLインジェクション検出 | Done |
 | 4 | xss-attacker: Reflected XSS検出 | Done |
-| 5 | security-scan スキル実装 | Open |
+| 5 | security-scan スキル実装 | Done |
 | 6 | 基本レポート出力機能 | Open |
 
 ### v0.2.0 - 拡張
@@ -44,6 +44,7 @@
 
 | Date | Feature | Issue | Status |
 |------|---------|-------|--------|
+| 2024-12-24 | security-scan | #5 | Done |
 | 2024-12-24 | xss-attacker | #4 | Done |
 | 2024-12-24 | injection-attacker | #3 | Done |
 | 2024-12-24 | recon-agent | #2 | Done |
