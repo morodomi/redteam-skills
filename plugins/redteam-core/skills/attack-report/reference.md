@@ -111,6 +111,16 @@ security-scan出力のJSON形式を入力として受け取る。
 | bola | CVSS:4.0/AV:N/AC:L/AT:N/PR:L/UI:N/VC:H/VI:L/VA:N/SC:N/SI:N/SA:N | 7.1 |
 | rate-limiting-missing | CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N | 5.3 |
 | excessive-data-exposure | CVSS:4.0/AV:N/AC:L/AT:N/PR:L/UI:N/VC:H/VI:N/VA:N/SC:N/SI:N/SA:N | 6.5 |
+| debug-enabled | CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:L/VI:N/VA:N/SC:N/SI:N/SA:N | 5.3 |
+| weak-hash | CVSS:4.0/AV:N/AC:H/AT:N/PR:N/UI:N/VC:H/VI:N/VA:N/SC:N/SI:N/SA:N | 5.9 |
+| weak-crypto | CVSS:4.0/AV:N/AC:H/AT:N/PR:N/UI:N/VC:H/VI:H/VA:N/SC:N/SI:N/SA:N | 7.4 |
+| default-credentials | CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:N/SC:N/SI:N/SA:N | 9.1 |
+| insecure-cors | CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:A/VC:L/VI:L/VA:N/SC:N/SI:N/SA:N | 4.8 |
+| empty-catch | CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N | 6.3 |
+| swallowed-exception | CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N | 6.3 |
+| fail-open | CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:N/SC:N/SI:N/SA:N | 9.1 |
+| generic-exception | CVSS:4.0/AV:N/AC:H/AT:P/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N | 2.3 |
+| missing-finally | CVSS:4.0/AV:L/AC:H/AT:P/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N | 1.8 |
 
 ### Agent to Type Mapping
 
@@ -120,6 +130,8 @@ security-scan出力のJSON形式を入力として受け取る。
 | xss-attacker | xss-reflected |
 | auth-attacker | hardcoded-credentials |
 | api-attacker | mass-assignment |
+| crypto-attacker | weak-crypto |
+| error-attacker | empty-catch |
 
 ## CWE/OWASP Mapping
 
@@ -135,6 +147,16 @@ security-scan出力のJSON形式を入力として受け取る。
 | bola | CWE-639 | API1:2023 |
 | rate-limiting-missing | CWE-770 | API4:2023 |
 | excessive-data-exposure | CWE-200 | API3:2023 |
+| debug-enabled | CWE-489 | A02:2025 |
+| weak-hash | CWE-328 | A04:2025 |
+| weak-crypto | CWE-327 | A04:2025 |
+| default-credentials | CWE-1392 | A02:2025 |
+| insecure-cors | CWE-942 | A02:2025 |
+| empty-catch | CWE-390 | A10:2025 |
+| swallowed-exception | CWE-391 | A10:2025 |
+| fail-open | CWE-636 | A10:2025 |
+| generic-exception | CWE-396 | A10:2025 |
+| missing-finally | CWE-404 | A10:2025 |
 
 ## Link Templates
 
@@ -156,3 +178,5 @@ OWASP API: https://owasp.org/API-Security/editions/2023/en/0xa{X}-{kebab-case-na
 - [security-scan](../security-scan/SKILL.md)
 - [injection-attacker](../../agents/injection-attacker.md)
 - [xss-attacker](../../agents/xss-attacker.md)
+- [crypto-attacker](../../agents/crypto-attacker.md)
+- [error-attacker](../../agents/error-attacker.md)

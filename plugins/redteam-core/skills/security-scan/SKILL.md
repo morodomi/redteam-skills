@@ -25,7 +25,9 @@ description: セキュリティスキャンを実行。RECON→SCAN→REPORTワ�
 
 2. SCAN Phase（並行実行）
    ├── injection-attacker（SQLi検出）
-   └── xss-attacker（XSS検出）
+   ├── xss-attacker（XSS検出）
+   ├── crypto-attacker（暗号・設定脆弱性）
+   └── error-attacker（例外処理脆弱性）
 
 3. REPORT Phase
    └── 結果を統合してJSON出力
@@ -38,6 +40,8 @@ description: セキュリティスキャンを実行。RECON→SCAN→REPORTワ�
 | RECON | recon-agent | 情報収集・優先度付け |
 | SCAN | injection-attacker | SQLインジェクション検出 |
 | SCAN | xss-attacker | XSS脆弱性検出 |
+| SCAN | crypto-attacker | 暗号・設定脆弱性検出 |
+| SCAN | error-attacker | 例外処理脆弱性検出 |
 
 ## Output Format
 

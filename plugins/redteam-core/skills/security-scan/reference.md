@@ -25,6 +25,8 @@ RECONの結果に基づき、以下のエージェントを**並行実行**:
 |-------|-----------------|
 | injection-attacker | SQL Injection (Union, Error, Boolean-blind) |
 | xss-attacker | Reflected XSS, Sanitization Missing |
+| crypto-attacker | Debug mode, Weak hash/crypto, Default credentials, CORS |
+| error-attacker | Empty catch, Fail-open, Generic exception |
 
 **並行実行の利点**:
 - スキャン時間の短縮
@@ -81,11 +83,13 @@ RECONの結果に基づき、以下のエージェントを**並行実行**:
 ## Limitations
 
 - 静的解析のみ（動的テストは未対応）
-- MVP対象: SQLi, XSS のみ
-- 将来対応予定: auth-attacker, api-attacker
+- MVP対象: SQLi, XSS, Crypto, Error Handling
+- 対応済: auth-attacker, api-attacker, crypto-attacker, error-attacker
 
 ## References
 
 - [recon-agent](../../agents/recon-agent.md)
 - [injection-attacker](../../agents/injection-attacker.md)
 - [xss-attacker](../../agents/xss-attacker.md)
+- [crypto-attacker](../../agents/crypto-attacker.md)
+- [error-attacker](../../agents/error-attacker.md)
