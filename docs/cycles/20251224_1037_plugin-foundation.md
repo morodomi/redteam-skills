@@ -6,7 +6,7 @@
 |------|-------|
 | Feature | redteam-coreプラグイン基盤構築 |
 | Issue | #1 |
-| Phase | INIT |
+| Phase | DONE |
 | Started | 2024-12-24 10:37 |
 
 ## Environment
@@ -73,7 +73,7 @@ scripts/
 | GREEN | Done | プラグイン構造実装、全テスト成功 |
 | REFACTOR | Done | .gitkeep追加 |
 | REVIEW | Done | テスト全PASS、code-review完了 |
-| COMMIT | - | |
+| COMMIT | Done | 06b34bd |
 
 ## References
 
