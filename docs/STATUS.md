@@ -6,7 +6,7 @@
 |------|-------|
 | Project | redteam-skills |
 | Current Version | 0.1.0-dev |
-| Last Updated | 2024-12-24 |
+| Last Updated | 2025-12-25 |
 
 ## Milestones
 
@@ -28,7 +28,7 @@
 | 7 | auth-attacker: 認証攻撃エージェント | Done |
 | 8 | api-attacker: API攻撃エージェント | Done |
 | 9 | attack-report スキル実装 | Done |
-| 10 | OWASP Top 10 完全カバレッジ | Open |
+| 10 | OWASP Top 10 完全カバレッジ | In Progress |
 
 ### v1.0.0 - 完成
 
@@ -44,6 +44,7 @@
 
 | Date | Feature | Issue | Status |
 |------|---------|-------|--------|
+| 2025-12-25 | owasp-2025-coverage | #10 | In Progress |
 | 2024-12-24 | attack-report-v2 | #9 | Done |
 | 2024-12-24 | api-attacker | #8 | Done |
 | 2024-12-24 | auth-attacker | #7 | Done |
