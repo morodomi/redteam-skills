@@ -1,0 +1,10 @@
+{
+  "name": "redteam-core",
+  "description": "Security audit automation. RECON → SCAN → ATTACK → REPORT",
+  "version": "0.1.0",
+  "author": {
+    "name": "morodomi"
+  },
+  "repository": "https://github.com/morodomi/redteam-skills",
+  "license": "MIT"
+}
