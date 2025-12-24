@@ -6,7 +6,7 @@
 |------|-------|
 | Feature | injection-attacker SQLインジェクション検出 |
 | Issue | #3 |
-| Phase | INIT |
+| Phase | DONE |
 | Started | 2024-12-24 13:09 |
 
 ## Environment
@@ -152,7 +152,7 @@ patterns:
 | GREEN | Done | injection-attacker.md作成、全テスト成功 |
 | REFACTOR | Done | リファクタリング不要（構造クリーン） |
 | REVIEW | Done | テスト全PASS、code-review完了（Critical=拡張項目） |
-| COMMIT | - | |
+| COMMIT | Done | b3051c3 |
 
 ## References
 
