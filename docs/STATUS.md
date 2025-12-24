@@ -27,7 +27,7 @@
 |---|-------|--------|
 | 7 | auth-attacker: 認証攻撃エージェント | Done |
 | 8 | api-attacker: API攻撃エージェント | Done |
-| 9 | attack-report スキル実装 | Open |
+| 9 | attack-report スキル実装 | Done |
 | 10 | OWASP Top 10 完全カバレッジ | Open |
 
 ### v1.0.0 - 完成
@@ -44,6 +44,7 @@
 
 | Date | Feature | Issue | Status |
 |------|---------|-------|--------|
+| 2024-12-24 | attack-report-v2 | #9 | Done |
 | 2024-12-24 | api-attacker | #8 | Done |
 | 2024-12-24 | auth-attacker | #7 | Done |
 | 2024-12-24 | attack-report | #6 | Done |
