@@ -11,6 +11,7 @@ security-scan出力のJSON形式を入力として受け取る。
 ```json
 {
   "metadata": {
+    "schema_version": "string (default: 1.0, current: 2.0)",
     "scan_id": "string (UUID v4)",
     "scanned_at": "string (ISO 8601)",
     "target_directory": "string (absolute path)"
@@ -31,6 +32,9 @@ security-scan出力のJSON形式を入力として受け取る。
     {
       "agent": "string",
       "id": "string",
+      "type": "string (attack technique)",
+      "vulnerability_class": "string (category, optional for schema 2.0)",
+      "cwe_id": "string (optional, e.g. CWE-89)",
       "severity": "critical | high | medium | low",
       "file": "string",
       "line": "number",
@@ -121,6 +125,10 @@ security-scan出力のJSON形式を入力として受け取る。
 | fail-open | CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:N/SC:N/SI:N/SA:N | 9.1 |
 | generic-exception | CVSS:4.0/AV:N/AC:H/AT:P/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N | 2.3 |
 | missing-finally | CVSS:4.0/AV:L/AC:H/AT:P/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N | 1.8 |
+| ssrf | CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:L/VA:N/SC:H/SI:N/SA:N | 8.6 |
+| path-traversal | CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:N/VA:N/SC:N/SI:N/SA:N | 7.5 |
+| lfi | CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:N/VA:N/SC:N/SI:N/SA:N | 7.5 |
+| arbitrary-file-upload | CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N | 9.0 |
 
 ### Agent to Type Mapping
 
@@ -132,17 +140,19 @@ security-scan出力のJSON形式を入力として受け取る。
 | api-attacker | mass-assignment |
 | crypto-attacker | weak-crypto |
 | error-attacker | empty-catch |
+| file-attacker | path-traversal |
+| ssrf-attacker | ssrf |
 
 ## CWE/OWASP Mapping
 
 | Type | CWE | OWASP |
 |------|-----|-------|
-| sql-injection | CWE-89 | A03:2021 |
-| xss-reflected | CWE-79 | A03:2021 |
-| xss-stored | CWE-79 | A03:2021 |
-| hardcoded-credentials | CWE-798 | A07:2021 |
-| missing-auth | CWE-306 | A07:2021 |
-| broken-access-control | CWE-862 | A01:2021 |
+| sql-injection | CWE-89 | A05:2025 |
+| xss-reflected | CWE-79 | A05:2025 |
+| xss-stored | CWE-79 | A05:2025 |
+| hardcoded-credentials | CWE-798 | A07:2025 |
+| missing-auth | CWE-306 | A07:2025 |
+| broken-access-control | CWE-862 | A01:2025 |
 | mass-assignment | CWE-915 | API3:2023 |
 | bola | CWE-639 | API1:2023 |
 | rate-limiting-missing | CWE-770 | API4:2023 |
@@ -157,6 +167,10 @@ security-scan出力のJSON形式を入力として受け取る。
 | fail-open | CWE-636 | A10:2025 |
 | generic-exception | CWE-396 | A10:2025 |
 | missing-finally | CWE-404 | A10:2025 |
+| ssrf | CWE-918 | A01:2025 |
+| path-traversal | CWE-22 | A01:2025 |
+| lfi | CWE-98 | A05:2025 |
+| arbitrary-file-upload | CWE-434 | A01:2025 |
 
 ## Link Templates
 
@@ -164,13 +178,13 @@ security-scan出力のJSON形式を入力として受け取る。
 
 ```
 CWE: https://cwe.mitre.org/data/definitions/{ID}.html
-OWASP Top 10: https://owasp.org/Top10/2021/A{XX}_{YYYY}-{Name}/
+OWASP Top 10: https://owasp.org/Top10/2025/A{XX}_{YYYY}-{Name}/
 OWASP API: https://owasp.org/API-Security/editions/2023/en/0xa{X}-{kebab-case-name}/
 ```
 
 例:
 - https://cwe.mitre.org/data/definitions/89.html
-- https://owasp.org/Top10/2021/A03_2021-Injection/
+- https://owasp.org/Top10/2025/A05_2025-Injection/
 - https://owasp.org/API-Security/editions/2023/en/0xa1-broken-object-level-authorization/
 
 ## References

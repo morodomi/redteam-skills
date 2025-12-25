@@ -43,6 +43,7 @@
 | # | Issue | Status |
 |---|-------|--------|
 | 16 | vulnerability type フィールド追加 | Done |
+| 21 | attack-report: vulnerability_class活用 | Done |
 
 ### Future (Backlog)
 
@@ -57,6 +58,7 @@
 
 | Date | Feature | Issue | Status |
 |------|---------|-------|--------|
+| 2025-12-25 | attack-report-vuln-class | #21 | Done |
 | 2025-12-25 | vulnerability-type-field | #16 | Done |
 | 2025-12-25 | dynamic-testing | #13 | Done |
 | 2025-12-25 | ssrf-attacker | #12 | Done |
