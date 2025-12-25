@@ -1,20 +1,30 @@
 ---
 name: injection-attacker
-description: SQLインジェクション検出エージェント。静的解析でSQLi脆弱性を検出。
+description: インジェクション検出エージェント。静的解析でSQL/Command Injection脆弱性を検出。
 allowed-tools: Read, Grep, Glob
 ---
 
 # Injection Attacker
 
-SQLインジェクション脆弱性を静的解析で検出するエージェント。
+SQL/Command Injection脆弱性を静的解析で検出するエージェント。
 
 ## Detection Targets
+
+### SQL Injection
 
 | Type | Description | Pattern |
 |------|-------------|---------|
 | Union-based | UNION SELECT攻撃 | 文字列結合でのSQL構築 |
 | Error-based | エラーメッセージ利用 | 未処理の例外、エラー出力 |
 | Boolean-blind | 条件分岐による推測 | 動的WHERE句構築 |
+
+### Command Injection
+
+| Type | Description | Pattern |
+|------|-------------|---------|
+| Direct execution | OSコマンド直接実行 | exec(), system()への入力連結 |
+| Shell invocation | シェル経由実行 | shell_exec(), popen()への入力 |
+| Subprocess | サブプロセス実行 | subprocess.call(), child_process.exec() |
 
 ## Framework Detection Patterns
 
@@ -26,6 +36,8 @@ SQLインジェクション脆弱性を静的解析で検出するエージェ�
 | Express | `query("SELECT..."+input)` | `query("SELECT...?", [input])` |
 
 ## Dangerous Patterns
+
+### SQL Injection
 
 ```yaml
 patterns:
@@ -43,6 +55,52 @@ patterns:
   # Node.js/Express
   - 'query\s*\(\s*[`"\'].*\+'
   - 'query\s*\(\s*`.*\$\{'
+```
+
+### Command Injection
+
+```yaml
+patterns:
+  # PHP
+  - 'exec\s*\(\s*\$'
+  - 'shell_exec\s*\('
+  - 'system\s*\(\s*\$'
+  - 'passthru\s*\('
+  - 'popen\s*\('
+  - 'proc_open\s*\('
+  - '`.*\$.*`'
+
+  # Python
+  - 'os\.system\s*\('
+  - 'subprocess\.call\s*\('
+  - 'subprocess\.Popen\s*\('
+  - 'os\.popen\s*\('
+
+  # Node.js
+  - 'child_process\.exec\s*\('
+  - 'child_process\.spawn\s*\('
+  - 'execSync\s*\('
+
+  # Go
+  - 'exec\.Command\s*\('
+```
+
+## Safe Patterns
+
+以下のパターンは誤検知を避けるため除外:
+
+```yaml
+safe_patterns:
+  # PHP - フレームワーク標準
+  - 'Artisan::call'
+  - 'Process::run'  # Symfony Process
+
+  # Python - 固定コマンド
+  - 'subprocess\.call\s*\(\s*\['  # リスト形式（安全）
+  - 'subprocess\.run\s*\(\s*\['
+
+  # Node.js - 固定コマンド
+  - 'execSync\s*\(\s*["\'][^$]'  # 変数なし
 ```
 
 ## Output Format
@@ -66,11 +124,23 @@ patterns:
       "code": "DB::raw($request->input('sort'))",
       "description": "User input directly passed to DB::raw()",
       "remediation": "Use parameterized queries or Eloquent ORM"
+    },
+    {
+      "id": "CMD-001",
+      "type": "direct-execution",
+      "vulnerability_class": "command-injection",
+      "cwe_id": "CWE-78",
+      "severity": "critical",
+      "file": "app/Services/ExportService.php",
+      "line": 23,
+      "code": "exec('convert ' . $request->input('file'))",
+      "description": "User input directly passed to exec()",
+      "remediation": "Use escapeshellarg() or avoid shell commands"
     }
   ],
   "summary": {
-    "total": 1,
-    "critical": 1,
+    "total": 2,
+    "critical": 2,
     "high": 0,
     "medium": 0,
     "low": 0
@@ -89,10 +159,10 @@ patterns:
 
 ## CWE/OWASP Mapping
 
-| Reference | ID |
-|-----------|-----|
-| CWE | CWE-89: SQL Injection |
-| OWASP Top 10 | A03:2021 Injection |
+| Type | CWE | OWASP |
+|------|-----|-------|
+| SQL Injection | CWE-89 | A05:2025 Injection |
+| Command Injection | CWE-78 | A05:2025 Injection |
 
 ## Workflow
 

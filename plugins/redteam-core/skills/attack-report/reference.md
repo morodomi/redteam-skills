@@ -106,6 +106,7 @@ security-scan出力のJSON形式を入力として受け取る。
 | Vulnerability Type | CVSS 4.0 Vector | Score |
 |-------------------|-----------------|-------|
 | sql-injection | CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N | 9.3 |
+| command-injection | CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N | 9.3 |
 | xss-reflected | CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:A/VC:L/VI:L/VA:N/SC:L/SI:L/SA:N | 5.1 |
 | xss-stored | CVSS:4.0/AV:N/AC:L/AT:N/PR:L/UI:P/VC:H/VI:H/VA:N/SC:L/SI:L/SA:N | 7.2 |
 | hardcoded-credentials | CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:N/SC:N/SI:N/SA:N | 9.1 |
@@ -148,6 +149,7 @@ security-scan出力のJSON形式を入力として受け取る。
 | Type | CWE | OWASP |
 |------|-----|-------|
 | sql-injection | CWE-89 | A05:2025 |
+| command-injection | CWE-78 | A05:2025 |
 | xss-reflected | CWE-79 | A05:2025 |
 | xss-stored | CWE-79 | A05:2025 |
 | hardcoded-credentials | CWE-798 | A07:2025 |
