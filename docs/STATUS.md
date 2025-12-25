@@ -34,7 +34,7 @@
 
 | # | Issue | Status |
 |---|-------|--------|
-| 11 | file-attacker: ファイル攻撃エージェント | Open |
+| 11 | file-attacker: ファイル攻撃エージェント | Done |
 | 12 | ssrf-attacker: SSRF攻撃エージェント | Open |
 | 13 | 動的テストオプション | Open |
 | 14 | CI/CD統合 | Open |
@@ -44,6 +44,7 @@
 
 | Date | Feature | Issue | Status |
 |------|---------|-------|--------|
+| 2025-12-25 | file-attacker | #11 | Done |
 | 2025-12-25 | owasp-2025-integration | #10 | Done |
 | 2025-12-25 | owasp-2025-coverage | #10 | Done |
 | 2024-12-24 | attack-report-v2 | #9 | Done |
