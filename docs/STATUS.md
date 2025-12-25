@@ -5,7 +5,7 @@
 | Item | Value |
 |------|-------|
 | Project | redteam-skills |
-| Current Version | 0.1.0-dev |
+| Current Version | 1.0.0 |
 | Last Updated | 2025-12-25 |
 
 ## Milestones
@@ -37,7 +37,12 @@
 | 11 | file-attacker: ファイル攻撃エージェント | Done |
 | 12 | ssrf-attacker: SSRF攻撃エージェント | Done |
 | 13 | dynamic-testing: 動的テストオプション（SQLi） | Done |
-| 14 | CI/CD統合 | Open |
+
+### Future (Backlog)
+
+| # | Issue | Status |
+|---|-------|--------|
+| 14 | GitHub Action化 | Open |
 | 15 | カスタムルール対応 | Open |
 | 17 | dynamic-xss: XSS動的検証 | Open |
 | 18 | dynamic-ssrf: SSRFコールバック検証 | Open |
