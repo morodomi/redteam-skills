@@ -32,6 +32,20 @@ RECONの結果に基づき、以下のエージェントを**並行実行**:
 - スキャン時間の短縮
 - 独立した検出ロジック
 
+### [VERIFY] (--dynamic時のみ)
+
+動的テストによる脆弱性検証。--dynamicオプション指定時のみ実行。
+
+| Agent | Role |
+|-------|------|
+| dynamic-verifier | SQLiエラーベース検証 |
+
+**安全対策**:
+- --target必須（明示的なURL指定）
+- 非破壊ペイロードのみ使用
+- レート制限（1秒間隔、最大50リクエスト）
+- localhost以外は確認プロンプト
+
 ### Phase 3: REPORT
 
 全エージェントの結果を統合し、JSON形式で出力。
@@ -57,6 +71,13 @@ RECONの結果に基づき、以下のエージェントを**並行実行**:
     "medium": "number",
     "low": "number"
   },
+  "verification": {
+    "enabled": "boolean (optional, --dynamic時のみ)",
+    "target": "string (optional)",
+    "verified": "number (optional)",
+    "confirmed": "number (optional)",
+    "false_positives": "number (optional)"
+  },
   "details": [
     {
       "agent": "string",
@@ -66,7 +87,10 @@ RECONの結果に基づき、以下のエージェントを**並行実行**:
       "line": "number",
       "code": "string (optional)",
       "description": "string (optional)",
-      "remediation": "string (optional)"
+      "remediation": "string (optional)",
+      "verified": "boolean (optional, --dynamic時のみ)",
+      "verification_result": "confirmed | not_vulnerable | inconclusive | skipped (optional)",
+      "evidence": "string (optional)"
     }
   ]
 }
@@ -82,9 +106,9 @@ RECONの結果に基づき、以下のエージェントを**並行実行**:
 
 ## Limitations
 
-- 静的解析のみ（動的テストは未対応）
+- 動的テストはSQLiエラーベース検出のみ対応
 - MVP対象: SQLi, XSS, Crypto, Error Handling
-- 対応済: auth-attacker, api-attacker, crypto-attacker, error-attacker
+- 対応済: auth-attacker, api-attacker, crypto-attacker, error-attacker, dynamic-verifier
 
 ## References
 
@@ -93,3 +117,4 @@ RECONの結果に基づき、以下のエージェントを**並行実行**:
 - [xss-attacker](../../agents/xss-attacker.md)
 - [crypto-attacker](../../agents/crypto-attacker.md)
 - [error-attacker](../../agents/error-attacker.md)
+- [dynamic-verifier](../../agents/dynamic-verifier.md)

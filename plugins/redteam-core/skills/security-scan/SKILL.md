@@ -12,7 +12,17 @@ description: セキュリティスキャンを実行。RECON→SCAN→REPORTワ�
 ```bash
 /security-scan           # 現在のディレクトリをスキャン
 /security-scan ./src     # 指定ディレクトリをスキャン
+
+# 動的テスト有効化（--target必須）
+/security-scan ./src --dynamic --target http://localhost:8000
 ```
+
+## Options
+
+| Option | Description | Required |
+|--------|-------------|----------|
+| --dynamic | 動的テストを有効化 | No |
+| --target | 検証対象URL | Yes (if --dynamic) |
 
 ## Workflow
 
