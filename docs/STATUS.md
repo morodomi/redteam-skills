@@ -36,7 +36,7 @@
 |---|-------|--------|
 | 11 | file-attacker: ファイル攻撃エージェント | Done |
 | 12 | ssrf-attacker: SSRF攻撃エージェント | Done |
-| 13 | dynamic-testing: 動的テストオプション（SQLi） | In Progress |
+| 13 | dynamic-testing: 動的テストオプション（SQLi） | Done |
 | 14 | CI/CD統合 | Open |
 | 15 | カスタムルール対応 | Open |
 | 17 | dynamic-xss: XSS動的検証 | Open |
@@ -46,7 +46,7 @@
 
 | Date | Feature | Issue | Status |
 |------|---------|-------|--------|
-| 2025-12-25 | dynamic-testing | #13 | In Progress |
+| 2025-12-25 | dynamic-testing | #13 | Done |
 | 2025-12-25 | ssrf-attacker | #12 | Done |
 | 2025-12-25 | file-attacker | #11 | Done |
 | 2025-12-25 | owasp-2025-integration | #10 | Done |
