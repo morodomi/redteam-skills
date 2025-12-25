@@ -42,7 +42,7 @@
 
 | # | Issue | Status |
 |---|-------|--------|
-| 16 | vulnerability type フィールド追加 | In Progress |
+| 16 | vulnerability type フィールド追加 | Done |
 
 ### Future (Backlog)
 
@@ -57,7 +57,7 @@
 
 | Date | Feature | Issue | Status |
 |------|---------|-------|--------|
-| 2025-12-25 | vulnerability-type-field | #16 | In Progress |
+| 2025-12-25 | vulnerability-type-field | #16 | Done |
 | 2025-12-25 | dynamic-testing | #13 | Done |
 | 2025-12-25 | ssrf-attacker | #12 | Done |
 | 2025-12-25 | file-attacker | #11 | Done |
