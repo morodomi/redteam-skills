@@ -7,7 +7,7 @@
 | Feature | injection-attacker: Command Injection対応追加 |
 | Issue | #20 |
 | Created | 2025-12-25 14:40 |
-| Status | INIT |
+| Status | DONE |
 
 ## Goal
 
@@ -116,4 +116,4 @@ command-injection: CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:N/SI:N/SA
 | GREEN | Done | injection-attacker.md + reference.md更新、11 PASS |
 | REFACTOR | Done | リファクタリング不要（既存パターン準拠） |
 | REVIEW | Done | quality-gate WARN (72)、改善提案は次Issue |
-| COMMIT | - | |
+| COMMIT | Done | a415bef |
