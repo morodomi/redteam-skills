@@ -23,7 +23,8 @@ redteam-skills/
 │       │   ├── xss-attacker.md
 │       │   ├── api-attacker.md
 │       │   ├── file-attacker.md
-│       │   └── ssrf-attacker.md
+│       │   ├── ssrf-attacker.md
+│       │   └── csrf-attacker.md
 │       ├── skills/            # スキル定義
 │       │   ├── security-scan/
 │       │   └── attack-report/
@@ -58,6 +59,7 @@ RECON → SCAN → ATTACK → REPORT
 | api-attacker | BOLA/BFLA/Mass Assignment |
 | file-attacker | Path Traversal、LFI/RFI |
 | ssrf-attacker | SSRF、クラウドメタデータ |
+| csrf-attacker | CSRF、Cookie属性 |
 
 ## 品質基準
 

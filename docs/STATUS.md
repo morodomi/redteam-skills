@@ -58,6 +58,7 @@
 
 | Date | Feature | Issue | Status |
 |------|---------|-------|--------|
+| 2025-12-25 | csrf-attacker | #19 | In Progress |
 | 2025-12-25 | command-injection | #20 | Done |
 | 2025-12-25 | attack-report-vuln-class | #21 | Done |
 | 2025-12-25 | vulnerability-type-field | #16 | Done |
