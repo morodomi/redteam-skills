@@ -82,6 +82,8 @@ patterns:
     {
       "id": "CRYPTO-001",
       "type": "weak-hash",
+      "vulnerability_class": "weak-hash",
+      "cwe_id": "CWE-328",
       "severity": "high",
       "file": "app/Utils/HashHelper.php",
       "line": 15,

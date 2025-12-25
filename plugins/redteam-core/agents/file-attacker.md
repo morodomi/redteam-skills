@@ -60,6 +60,8 @@ patterns:
     {
       "id": "FILE-001",
       "type": "path-traversal",
+      "vulnerability_class": "path-traversal",
+      "cwe_id": "CWE-22",
       "severity": "critical",
       "file": "app/Controllers/FileController.php",
       "line": 45,

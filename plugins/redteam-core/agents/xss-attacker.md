@@ -58,6 +58,8 @@ patterns:
     {
       "id": "XSS-001",
       "type": "reflected",
+      "vulnerability_class": "xss",
+      "cwe_id": "CWE-79",
       "severity": "high",
       "file": "resources/views/user.blade.php",
       "line": 23,

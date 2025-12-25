@@ -58,6 +58,8 @@ patterns:
     {
       "id": "SQLI-001",
       "type": "union-based",
+      "vulnerability_class": "sql-injection",
+      "cwe_id": "CWE-89",
       "severity": "critical",
       "file": "app/Http/Controllers/UserController.php",
       "line": 45,

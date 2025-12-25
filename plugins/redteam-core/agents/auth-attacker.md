@@ -64,6 +64,8 @@ patterns:
     {
       "id": "AUTH-001",
       "type": "hardcoded-credentials",
+      "vulnerability_class": "hardcoded-credentials",
+      "cwe_id": "CWE-798",
       "severity": "critical",
       "file": "config/database.php",
       "line": 23,

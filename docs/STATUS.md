@@ -38,6 +38,12 @@
 | 12 | ssrf-attacker: SSRF攻撃エージェント | Done |
 | 13 | dynamic-testing: 動的テストオプション（SQLi） | Done |
 
+### v1.1.0 - 改善
+
+| # | Issue | Status |
+|---|-------|--------|
+| 16 | vulnerability type フィールド追加 | In Progress |
+
 ### Future (Backlog)
 
 | # | Issue | Status |
@@ -51,6 +57,7 @@
 
 | Date | Feature | Issue | Status |
 |------|---------|-------|--------|
+| 2025-12-25 | vulnerability-type-field | #16 | In Progress |
 | 2025-12-25 | dynamic-testing | #13 | Done |
 | 2025-12-25 | ssrf-attacker | #12 | Done |
 | 2025-12-25 | file-attacker | #11 | Done |

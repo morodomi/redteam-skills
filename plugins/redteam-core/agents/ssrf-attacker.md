@@ -65,6 +65,8 @@ patterns:
     {
       "id": "SSRF-001",
       "type": "ssrf",
+      "vulnerability_class": "ssrf",
+      "cwe_id": "CWE-918",
       "severity": "critical",
       "file": "app/Http/Controllers/WebhookController.php",
       "line": 45,

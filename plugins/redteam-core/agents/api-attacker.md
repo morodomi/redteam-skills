@@ -63,6 +63,8 @@ patterns:
     {
       "id": "API-001",
       "type": "mass-assignment",
+      "vulnerability_class": "mass-assignment",
+      "cwe_id": "CWE-915",
       "severity": "high",
       "file": "app/Http/Controllers/UserController.php",
       "line": 34,

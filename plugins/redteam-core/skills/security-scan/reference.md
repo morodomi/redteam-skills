@@ -55,6 +55,7 @@ RECONの結果に基づき、以下のエージェントを**並行実行**:
 ```json
 {
   "metadata": {
+    "schema_version": "string (default: 1.0, current: 2.0)",
     "scan_id": "string (UUID v4)",
     "scanned_at": "string (ISO 8601)",
     "target_directory": "string (absolute path)"
@@ -82,6 +83,9 @@ RECONの結果に基づき、以下のエージェントを**並行実行**:
     {
       "agent": "string",
       "id": "string",
+      "type": "string (attack technique)",
+      "vulnerability_class": "string (category: sql-injection, xss, ssrf, etc.)",
+      "cwe_id": "string (optional, e.g. CWE-89)",
       "severity": "critical | high | medium | low",
       "file": "string",
       "line": "number",

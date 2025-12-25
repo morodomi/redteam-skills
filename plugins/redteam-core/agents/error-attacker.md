@@ -73,6 +73,8 @@ patterns:
     {
       "id": "ERR-001",
       "type": "empty-catch",
+      "vulnerability_class": "empty-catch",
+      "cwe_id": "CWE-390",
       "severity": "high",
       "file": "app/Services/PaymentService.php",
       "line": 45,
