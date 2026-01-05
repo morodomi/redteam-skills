@@ -1,0 +1,28 @@
+# Local settings
+.claude/settings.local.json
+
+# Review artifacts (temporary)
+docs/*_REVIEW_*.md
+docs/*_REVIEW_*.json
+docs/*_REVIEW_*.txt
+docs/*_risk-review_*.md
+docs/*_risk-review_*.json
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+
+# Node (if any)
+node_modules/
+
+# Python (if any)
+__pycache__/
+*.pyc
+.venv/
