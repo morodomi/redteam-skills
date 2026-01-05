@@ -56,7 +56,7 @@
 
 | # | Issue | Status |
 |---|-------|--------|
-| 22 | e2e-generator-base: E2Eテスト生成基盤 | Open |
+| 22 | e2e-generator-base: E2Eテスト生成基盤 | Done |
 | 23 | e2e-xss: XSS E2Eテスト生成 | Open |
 | 24 | e2e-csrf: CSRF E2Eテスト生成 | Open |
 
@@ -79,6 +79,7 @@
 
 | Date | Feature | Issue | Status |
 |------|---------|-------|--------|
+| 2026-01-05 | e2e-generator-base | #22 | Done |
 | 2026-01-05 | docs-release | #27 | Done |
 | 2025-12-25 | dynamic-xss | #17 | Done |
 | 2025-12-25 | csrf-attacker | #19 | Done |
