@@ -1,6 +1,8 @@
 {
   "name": "redteam-skills",
-  "owner": "morodomi",
+  "owner": {
+    "name": "morodomi"
+  },
   "description": "Security audit automation plugins for Claude Code",
   "plugins": [
     {
