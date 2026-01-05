@@ -66,17 +66,12 @@
 | 25 | e2e-auth: 認証バイパスE2Eテスト生成 | Open |
 | 26 | e2e-ssrf: SSRF E2Eテスト生成 | Open |
 
-### Future (Backlog)
-
-| # | Issue | Status |
-|---|-------|--------|
-| 14 | GitHub Action化 | Open |
-| 15 | カスタムルール対応 | Open |
-
 ### Closed (Won't Fix)
 
 | # | Issue | Reason |
 |---|-------|--------|
+| 14 | CI/CD統合 | Plugin配布のため不要 |
+| 15 | カスタムルール対応 | 既存エージェントで十分 |
 | 18 | dynamic-ssrf: SSRFコールバック検証 | OOBはスコープ外、#26で代替 |
 
 ## Recent Cycles
