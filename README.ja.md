@@ -22,18 +22,16 @@
 ### プラグインインストール
 
 ```bash
-# Claude Codeでプラグインをインストール
-claude /plugin install redteam-core@github:morodomi/redteam-skills
+# ステップ1: マーケットプレイス追加
+/plugin marketplace add morodomi/redteam-skills
+
+# ステップ2: プラグインインストール
+/plugin install redteam-core@morodomi-redteam-skills
 ```
 
-または `settings.json` に直接追加:
-
-```json
-{
-  "plugins": [
-    "redteam-core@github:morodomi/redteam-skills"
-  ]
-}
+またはインタラクティブUI:
+```bash
+/plugin
 ```
 
 ## 使い方

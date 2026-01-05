@@ -22,18 +22,16 @@ While **tdd-skills** supports development workflows (Blue Team / defense), **red
 ### Plugin Installation
 
 ```bash
-# Install plugin in Claude Code
-claude /plugin install redteam-core@github:morodomi/redteam-skills
+# Step 1: Add marketplace
+/plugin marketplace add morodomi/redteam-skills
+
+# Step 2: Install plugin
+/plugin install redteam-core@morodomi-redteam-skills
 ```
 
-Or add directly to `settings.json`:
-
-```json
-{
-  "plugins": [
-    "redteam-core@github:morodomi/redteam-skills"
-  ]
-}
+Or use interactive UI:
+```bash
+/plugin
 ```
 
 ## Usage
