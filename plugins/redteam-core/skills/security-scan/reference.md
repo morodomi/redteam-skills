@@ -32,18 +32,25 @@ RECONの結果に基づき、以下のエージェントを**並行実行**:
 - スキャン時間の短縮
 - 独立した検出ロジック
 
-### [VERIFY] (--dynamic時のみ)
+### [VERIFY] (--dynamic / --enable-dynamic-xss 時のみ)
 
-動的テストによる脆弱性検証。--dynamicオプション指定時のみ実行。
+動的テストによる脆弱性検証。オプション指定時のみ実行。
 
-| Agent | Role |
-|-------|------|
-| dynamic-verifier | SQLiエラーベース検証 |
+| Agent | Role | Flag |
+|-------|------|------|
+| dynamic-verifier (SQLi) | SQLiエラーベース検証 | --dynamic |
+| dynamic-verifier (XSS) | XSS反射検出検証 | --enable-dynamic-xss |
+
+**XSS動的検証** (`--enable-dynamic-xss`):
+- ペイロード挿入→レスポンスで反射確認
+- エスケープなし反射 → confirmed
+- エンコード済み or 反射なし → not_vulnerable
+- Content-Type: text/html のみ検証
 
 **安全対策**:
 - --target必須（明示的なURL指定）
 - 非破壊ペイロードのみ使用
-- レート制限（1秒間隔、最大50リクエスト）
+- レート制限（2秒間隔、最大3ペイロード/エンドポイント）
 - localhost以外は確認プロンプト
 
 ### Phase 3: REPORT
@@ -110,7 +117,8 @@ RECONの結果に基づき、以下のエージェントを**並行実行**:
 
 ## Limitations
 
-- 動的テストはSQLiエラーベース検出のみ対応
+- 動的テストはSQLiエラーベース検出、XSS反射検出に対応
+- XSS動的検証はReflected XSSのみ（DOM-based XSSは静的解析で対応）
 - MVP対象: SQLi, XSS, Crypto, Error Handling
 - 対応済: auth-attacker, api-attacker, crypto-attacker, error-attacker, dynamic-verifier
 

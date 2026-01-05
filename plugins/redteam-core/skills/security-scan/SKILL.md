@@ -15,14 +15,18 @@ description: セキュリティスキャンを実行。RECON→SCAN→REPORTワ�
 
 # 動的テスト有効化（--target必須）
 /security-scan ./src --dynamic --target http://localhost:8000
+
+# XSS動的検証も有効化
+/security-scan ./src --dynamic --enable-dynamic-xss --target http://localhost:8000
 ```
 
 ## Options
 
 | Option | Description | Required |
 |--------|-------------|----------|
-| --dynamic | 動的テストを有効化 | No |
-| --target | 検証対象URL | Yes (if --dynamic) |
+| --dynamic | SQLi動的テストを有効化 | No |
+| --enable-dynamic-xss | XSS動的テストを有効化 | No |
+| --target | 検証対象URL | Yes (if --dynamic or --enable-dynamic-xss) |
 
 ## Workflow
 
