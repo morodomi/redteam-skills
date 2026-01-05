@@ -1,30 +1,32 @@
 # redteam-skills
 
-セキュリティ監査業務をClaude Code Agentで自動化するプラグイン。
+A Claude Code Plugin for automated security auditing.
 
-## 概要
+[日本語版 README](README.ja.md)
 
-**tdd-skills**が開発ワークフロー（Blue Team / 守り）を支援するのに対し、**redteam-skills**はセキュリティ監査（Red Team / 攻め）を自動化します。
+## Overview
 
-| プラグイン | 役割 | 例え |
-|-----------|------|------|
-| [tdd-skills](https://github.com/morodomi/tdd-skills) | 開発ワークフロー | 内部コードレビュー |
-| redteam-skills | セキュリティ監査 | 外部攻撃シミュレーション |
+While **tdd-skills** supports development workflows (Blue Team / defense), **redteam-skills** automates security auditing (Red Team / offense).
 
-## インストール
+| Plugin | Role | Analogy |
+|--------|------|---------|
+| [tdd-skills](https://github.com/morodomi/tdd-skills) | Development workflow | Internal code review |
+| redteam-skills | Security audit | External attack simulation |
 
-### 前提条件
+## Installation
 
-- [Claude Code](https://claude.ai/claude-code) がインストール済み
+### Prerequisites
 
-### プラグインインストール
+- [Claude Code](https://claude.ai/claude-code) installed
+
+### Plugin Installation
 
 ```bash
-# Claude Codeでプラグインをインストール
+# Install plugin in Claude Code
 claude /plugin install redteam-core@github:morodomi/redteam-skills
 ```
 
-または `settings.json` に直接追加:
+Or add directly to `settings.json`:
 
 ```json
 {
@@ -34,71 +36,71 @@ claude /plugin install redteam-core@github:morodomi/redteam-skills
 }
 ```
 
-## 使い方
+## Usage
 
-### セキュリティスキャン
+### Security Scan
 
 ```bash
-# 現在のディレクトリをスキャン
+# Scan current directory
 /security-scan
 
-# 特定ディレクトリをスキャン
+# Scan specific directory
 /security-scan ./src
 
-# 動的テスト有効化（SQLi検証）
+# Enable dynamic testing (SQLi verification)
 /security-scan ./src --dynamic --target http://localhost:8000
 
-# XSS動的検証も有効化
+# Enable XSS dynamic verification
 /security-scan ./src --dynamic --enable-dynamic-xss --target http://localhost:8000
 ```
 
-**ワークフロー:**
+**Workflow:**
 
 ```
 1. RECON Phase
-   └── recon-agent: エンドポイント列挙、フレームワーク検出
+   └── recon-agent: Endpoint enumeration, framework detection
 
-2. SCAN Phase（並行実行）
+2. SCAN Phase (parallel execution)
    ├── injection-attacker: SQLi, Command Injection
    ├── xss-attacker: Reflected/DOM/Stored XSS
-   ├── auth-attacker: 認証バイパス
+   ├── auth-attacker: Authentication bypass
    ├── csrf-attacker: CSRF
-   ├── crypto-attacker: 暗号・設定脆弱性
-   └── error-attacker: 例外処理脆弱性
+   ├── crypto-attacker: Cryptographic vulnerabilities
+   └── error-attacker: Exception handling vulnerabilities
 
-3. VERIFY Phase（オプション）
-   └── dynamic-verifier: SQLi/XSS動的検証
+3. VERIFY Phase (optional)
+   └── dynamic-verifier: SQLi/XSS dynamic verification
 
 4. REPORT Phase
-   └── 結果統合、JSON出力
+   └── Result aggregation, JSON output
 ```
 
-### レポート生成
+### Report Generation
 
 ```bash
-# 脆弱性レポート生成
+# Generate vulnerability report
 /attack-report
 ```
 
-## エージェント一覧
+## Agents
 
-| エージェント | 対象脆弱性 | OWASP Top 10 |
-|-------------|-----------|--------------|
-| recon-agent | 偵察・情報収集 | - |
+| Agent | Target Vulnerabilities | OWASP Top 10 |
+|-------|----------------------|--------------|
+| recon-agent | Reconnaissance | - |
 | injection-attacker | SQL/Command Injection | A03:2021 |
 | xss-attacker | Reflected/Stored/DOM XSS | A03:2021 |
-| auth-attacker | 認証バイパス、JWT脆弱性 | A07:2021 |
-| csrf-attacker | CSRF、Cookie属性 | A01:2021 |
+| auth-attacker | Authentication bypass, JWT vulnerabilities | A07:2021 |
+| csrf-attacker | CSRF, Cookie attributes | A01:2021 |
 | api-attacker | BOLA/BFLA/Mass Assignment | A01:2021 |
-| file-attacker | Path Traversal、LFI/RFI | A01:2021 |
-| ssrf-attacker | SSRF、クラウドメタデータ | A10:2021 |
-| crypto-attacker | 弱い暗号、デバッグモード | A02:2021 |
-| error-attacker | 不適切な例外処理 | A05:2021 |
-| dynamic-verifier | SQLi/XSS動的検証 | - |
+| file-attacker | Path Traversal, LFI/RFI | A01:2021 |
+| ssrf-attacker | SSRF, Cloud metadata | A10:2021 |
+| crypto-attacker | Weak cryptography, Debug mode | A02:2021 |
+| error-attacker | Improper exception handling | A05:2021 |
+| dynamic-verifier | SQLi/XSS dynamic verification | - |
 
-## 出力形式
+## Output Format
 
-### 脆弱性レポート（JSON）
+### Vulnerability Report (JSON)
 
 ```json
 {
@@ -138,7 +140,7 @@ claude /plugin install redteam-core@github:morodomi/redteam-skills
 }
 ```
 
-## 対応言語
+## Supported Languages
 
 - PHP (Laravel, Symfony, WordPress)
 - Python (Django, Flask, FastAPI)
@@ -146,29 +148,30 @@ claude /plugin install redteam-core@github:morodomi/redteam-skills
 - Go (Gin, Echo)
 - Java (Spring Boot)
 
-## 参照基準
+## References
 
 - [OWASP Top 10 (2021)](https://owasp.org/Top10/)
+- [OWASP Top 10 (2025 Draft)](https://owasp.org/www-project-top-ten/)
 - [OWASP ASVS](https://owasp.org/www-project-application-security-verification-standard/)
 - [CWE Top 25](https://cwe.mitre.org/top25/)
 
-## バージョン履歴
+## Version History
 
-詳細は [CHANGELOG.md](CHANGELOG.md) を参照。
+See [CHANGELOG.md](CHANGELOG.md) for details.
 
-| Version | 内容 |
-|---------|------|
-| v1.2.0 | XSS動的検証追加 |
-| v1.1.0 | vulnerability_class対応 |
-| v1.0.0 | 全エージェント完成、動的テスト基盤 |
-| v0.2.0 | auth/api-attacker、attack-report追加 |
-| v0.1.0 | MVP（recon, injection, xss, security-scan） |
+| Version | Changes |
+|---------|---------|
+| v1.2.0 | XSS dynamic verification |
+| v1.1.0 | vulnerability_class support |
+| v1.0.0 | All agents complete, dynamic testing |
+| v0.2.0 | auth/api-attacker, attack-report |
+| v0.1.0 | MVP (recon, injection, xss, security-scan) |
 
-## ライセンス
+## License
 
 MIT
 
-## 関連プロジェクト
+## Related Projects
 
-- [tdd-skills](https://github.com/morodomi/tdd-skills) - TDD開発ワークフロー自動化
-- [anthropics/skills](https://github.com/anthropics/skills) - Claude Code公式スキル
+- [tdd-skills](https://github.com/morodomi/tdd-skills) - TDD development workflow automation
+- [anthropics/skills](https://github.com/anthropics/skills) - Official Claude Code skills
