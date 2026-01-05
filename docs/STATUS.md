@@ -45,19 +45,25 @@
 | 16 | vulnerability type フィールド追加 | Done |
 | 21 | attack-report: vulnerability_class活用 | Done |
 
+### v1.2.0 - 動的検証強化
+
+| # | Issue | Status |
+|---|-------|--------|
+| 17 | dynamic-xss: XSS動的検証 | Done |
+
 ### Future (Backlog)
 
 | # | Issue | Status |
 |---|-------|--------|
 | 14 | GitHub Action化 | Open |
 | 15 | カスタムルール対応 | Open |
-| 17 | dynamic-xss: XSS動的検証 | Open |
 | 18 | dynamic-ssrf: SSRFコールバック検証 | Open |
 
 ## Recent Cycles
 
 | Date | Feature | Issue | Status |
 |------|---------|-------|--------|
+| 2025-12-25 | dynamic-xss | #17 | Done |
 | 2025-12-25 | csrf-attacker | #19 | Done |
 | 2025-12-25 | command-injection | #20 | Done |
 | 2025-12-25 | attack-report-vuln-class | #21 | Done |
