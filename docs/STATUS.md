@@ -6,7 +6,7 @@
 |------|-------|
 | Project | redteam-skills |
 | Current Version | 1.0.0 |
-| Last Updated | 2025-12-25 |
+| Last Updated | 2026-01-05 |
 
 ## Milestones
 
@@ -51,13 +51,33 @@
 |---|-------|--------|
 | 17 | dynamic-xss: XSS動的検証 | Done |
 
+### v2.0 - E2E Test Generation
+
+| # | Issue | Status |
+|---|-------|--------|
+| 22 | e2e-generator-base: E2Eテスト生成基盤 | Open |
+| 23 | e2e-xss: XSS E2Eテスト生成 | Open |
+| 24 | e2e-csrf: CSRF E2Eテスト生成 | Open |
+
+### v2.1 - E2E Extended
+
+| # | Issue | Status |
+|---|-------|--------|
+| 25 | e2e-auth: 認証バイパスE2Eテスト生成 | Open |
+| 26 | e2e-ssrf: SSRF E2Eテスト生成 | Open |
+
 ### Future (Backlog)
 
 | # | Issue | Status |
 |---|-------|--------|
 | 14 | GitHub Action化 | Open |
 | 15 | カスタムルール対応 | Open |
-| 18 | dynamic-ssrf: SSRFコールバック検証 | Open |
+
+### Closed (Won't Fix)
+
+| # | Issue | Reason |
+|---|-------|--------|
+| 18 | dynamic-ssrf: SSRFコールバック検証 | OOBはスコープ外、#26で代替 |
 
 ## Recent Cycles
 
