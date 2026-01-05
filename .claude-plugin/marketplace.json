@@ -1,0 +1,10 @@
+{
+  "name": "redteam-skills",
+  "description": "Security audit automation plugins for Claude Code",
+  "plugins": [
+    {
+      "name": "redteam-core",
+      "path": "plugins/redteam-core"
+    }
+  ]
+}
