@@ -5,7 +5,7 @@
 | Item | Value |
 |------|-------|
 | Project | redteam-skills |
-| Current Version | 1.0.0 |
+| Current Version | 1.2.0 |
 | Last Updated | 2026-01-05 |
 
 ## Milestones
@@ -45,11 +45,12 @@
 | 16 | vulnerability type フィールド追加 | Done |
 | 21 | attack-report: vulnerability_class活用 | Done |
 
-### v1.2.0 - 動的検証強化
+### v1.2.0 - 動的検証強化 + リリース
 
 | # | Issue | Status |
 |---|-------|--------|
 | 17 | dynamic-xss: XSS動的検証 | Done |
+| 27 | docs: リリース準備ドキュメント整備 | Done |
 
 ### v2.0 - E2E Test Generation
 
@@ -78,6 +79,7 @@
 
 | Date | Feature | Issue | Status |
 |------|---------|-------|--------|
+| 2026-01-05 | docs-release | #27 | Done |
 | 2025-12-25 | dynamic-xss | #17 | Done |
 | 2025-12-25 | csrf-attacker | #19 | Done |
 | 2025-12-25 | command-injection | #20 | Done |
