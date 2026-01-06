@@ -58,7 +58,7 @@
 |---|-------|--------|
 | 22 | e2e-generator-base: E2Eテスト生成基盤 | Done |
 | 23 | e2e-xss: XSS E2Eテスト生成 | Done |
-| 24 | e2e-csrf: CSRF E2Eテスト生成 | Open |
+| 24 | e2e-csrf: CSRF E2Eテスト生成 | Done |
 
 ### v2.1 - E2E Extended
 
@@ -80,6 +80,7 @@
 
 | Date | Feature | Issue | Status |
 |------|---------|-------|--------|
+| 2026-01-06 | e2e-csrf | #24 | Done |
 | 2026-01-06 | e2e-xss | #23 | Done |
 | 2026-01-05 | e2e-generator-base | #22 | Done |
 | 2026-01-05 | docs-release | #27 | Done |
