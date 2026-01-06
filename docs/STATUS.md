@@ -57,7 +57,7 @@
 | # | Issue | Status |
 |---|-------|--------|
 | 22 | e2e-generator-base: E2Eテスト生成基盤 | Done |
-| 23 | e2e-xss: XSS E2Eテスト生成 | Open |
+| 23 | e2e-xss: XSS E2Eテスト生成 | Done |
 | 24 | e2e-csrf: CSRF E2Eテスト生成 | Open |
 
 ### v2.1 - E2E Extended
@@ -66,6 +66,7 @@
 |---|-------|--------|
 | 25 | e2e-auth: 認証バイパスE2Eテスト生成 | Open |
 | 26 | e2e-ssrf: SSRF E2Eテスト生成 | Open |
+| 28 | xss-attacker: DOM/Stored XSS検出対応 | Open |
 
 ### Closed (Won't Fix)
 
@@ -79,6 +80,7 @@
 
 | Date | Feature | Issue | Status |
 |------|---------|-------|--------|
+| 2026-01-06 | e2e-xss | #23 | Done |
 | 2026-01-05 | e2e-generator-base | #22 | Done |
 | 2026-01-05 | docs-release | #27 | Done |
 | 2025-12-25 | dynamic-xss | #17 | Done |

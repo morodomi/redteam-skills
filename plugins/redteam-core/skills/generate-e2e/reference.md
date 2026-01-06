@@ -51,6 +51,31 @@ Error: File already exists (use --force to overwrite)
 | {{ENDPOINT}} | テスト対象エンドポイント | /users/{id} |
 | {{PAYLOAD}} | テストペイロード | <script>alert(1)</script> |
 
+### xss.spec.ts.tmpl
+
+| Variable | Description | Example |
+|----------|-------------|---------|
+| {{VULN_ID}} | 脆弱性ID | XSS-001 |
+| {{ENDPOINT}} | テスト対象エンドポイント | /search |
+| {{PARAM_NAME}} | URLパラメータ名（Reflected用） | q |
+| {{INPUT_SELECTOR}} | 入力要素セレクタ（DOM/Stored用） | #search-input |
+| {{VIEW_ENDPOINT}} | 表示ページ（Stored用） | /comments |
+
+## XSS Test Types
+
+XSSテストは3タイプに対応: reflected, dom, stored
+
+| Type | Description | Test Strategy |
+|------|-------------|---------------|
+| reflected | URLパラメータ経由のXSS | URL注入→DOM検証 |
+| dom | クライアントサイドでのXSS | DOM操作→スクリプト実行検証 |
+| stored | 保存後に表示されるXSS | 保存→表示ページで検証 |
+
+### Empty XSS Vulnerabilities
+
+XSS脆弱性が0件の場合、xss.spec.tsは生成されない。
+playwright.config.tsのみが出力される。
+
 ## Output Files
 
 ### playwright.config.ts
