@@ -71,6 +71,18 @@ Error: File already exists (use --force to overwrite)
 | {{AUTH_EMAIL}} | 認証用メールアドレス | test@example.com |
 | {{AUTH_PASSWORD}} | 認証用パスワード | password |
 
+### auth.spec.ts.tmpl
+
+| Variable | Description | Example |
+|----------|-------------|---------|
+| {{VULN_ID}} | 脆弱性ID | AUTH-001 |
+| {{AUTH_TYPE}} | 認証タイプ | unauthenticated-access |
+| {{ENDPOINT}} | テスト対象エンドポイント | /admin/dashboard |
+| {{AUTH_ENDPOINT}} | 認証エンドポイント | /login |
+| {{AUTH_EMAIL}} | 認証用メールアドレス | test@example.com |
+| {{AUTH_PASSWORD}} | 認証用パスワード | password |
+| {{OTHER_USER_ID}} | 他ユーザーID（IDOR用） | 456 |
+
 ## XSS Test Types
 
 XSSテストは3タイプに対応: reflected, dom, stored
@@ -99,6 +111,22 @@ CSRFテストは3タイプに対応: csrf-token-missing, csrf-protection-disable
 ### Empty CSRF Vulnerabilities
 
 CSRF脆弱性が0件の場合、csrf.spec.tsは生成されない。
+playwright.config.tsのみが出力される。
+
+## Auth Test Types
+
+認証テストは4タイプに対応: unauthenticated-access, privilege-escalation, session-fixation, idor
+
+| Type | Description | Test Strategy |
+|------|-------------|---------------|
+| unauthenticated-access | 認証なしで保護リソースアクセス | 401/403期待、200=脆弱 |
+| privilege-escalation | 一般ユーザーで管理者機能アクセス | 403期待、200=脆弱 |
+| session-fixation | ログイン前後のセッションID比較 | ID変化=安全、同一=脆弱 |
+| idor | 他ユーザーのリソースアクセス | 403期待、200=脆弱 |
+
+### Empty Auth Vulnerabilities
+
+Auth脆弱性が0件の場合、auth.spec.tsは生成されない。
 playwright.config.tsのみが出力される。
 
 ## Output Files
