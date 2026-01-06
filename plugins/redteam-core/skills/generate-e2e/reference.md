@@ -61,6 +61,16 @@ Error: File already exists (use --force to overwrite)
 | {{INPUT_SELECTOR}} | 入力要素セレクタ（DOM/Stored用） | #search-input |
 | {{VIEW_ENDPOINT}} | 表示ページ（Stored用） | /comments |
 
+### csrf.spec.ts.tmpl
+
+| Variable | Description | Example |
+|----------|-------------|---------|
+| {{VULN_ID}} | 脆弱性ID | CSRF-001 |
+| {{ENDPOINT}} | テスト対象エンドポイント | /profile/update |
+| {{AUTH_ENDPOINT}} | 認証エンドポイント | /login |
+| {{AUTH_EMAIL}} | 認証用メールアドレス | test@example.com |
+| {{AUTH_PASSWORD}} | 認証用パスワード | password |
+
 ## XSS Test Types
 
 XSSテストは3タイプに対応: reflected, dom, stored
@@ -74,6 +84,21 @@ XSSテストは3タイプに対応: reflected, dom, stored
 ### Empty XSS Vulnerabilities
 
 XSS脆弱性が0件の場合、xss.spec.tsは生成されない。
+playwright.config.tsのみが出力される。
+
+## CSRF Test Types
+
+CSRFテストは3タイプに対応: csrf-token-missing, csrf-protection-disabled, samesite-cookie-missing
+
+| Type | Description | Test Strategy |
+|------|-------------|---------------|
+| csrf-token-missing | CSRFトークンなしでリクエスト成功 | トークンなしPOST→成功検証 |
+| csrf-protection-disabled | CSRF保護が無効化されている | 保護なしリクエスト→成功検証 |
+| samesite-cookie-missing | SameSite属性が未設定/None | Cookie属性チェック |
+
+### Empty CSRF Vulnerabilities
+
+CSRF脆弱性が0件の場合、csrf.spec.tsは生成されない。
 playwright.config.tsのみが出力される。
 
 ## Output Files
