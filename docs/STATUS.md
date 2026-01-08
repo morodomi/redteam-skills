@@ -72,7 +72,7 @@
 
 | # | Issue | Status |
 |---|-------|--------|
-| 31 | ssti-attacker: Server-Side Template Injection検出 | TODO |
+| 31 | ssti-attacker: Server-Side Template Injection検出 | Done |
 | 32 | xxe-attacker: XML External Entity Injection検出 | TODO |
 | 33 | wordpress-attacker: WordPress固有の脆弱性検出 | TODO |
 | 29 | expect.poll()パターン改善 | TODO |
@@ -105,6 +105,7 @@
 
 | Date | Feature | Issue | Status |
 |------|---------|-------|--------|
+| 2026-01-08 | ssti-attacker | #31 | Done |
 | 2026-01-08 | xss-dom-stored | #28 | Done |
 | 2026-01-07 | e2e-ssrf | #26 | Done |
 | 2026-01-06 | e2e-auth | #25 | Done |
