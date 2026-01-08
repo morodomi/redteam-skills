@@ -4,6 +4,30 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [2.1.0] - 2026-01-08
+
+### Added
+- e2e-auth: 認証バイパスE2Eテスト生成 (#25)
+  - unauthenticated-access, privilege-escalation, session-fixation, idor対応
+- e2e-ssrf: SSRF E2Eテスト生成 (#26)
+  - ローカルコールバックサーバー方式
+  - ssrf, blind-ssrf, partial-ssrf対応
+- xss-attacker: DOM/Stored XSS検出対応 (#28)
+  - DOM XSSパターン (innerHTML, outerHTML, document.write, eval, jQuery)
+  - Stored XSSパターン (Laravel, Django, Express)
+  - Output Formatにdom/storedタイプ追加
+
+## [2.0.0] - 2026-01-06
+
+### Added
+- e2e-generator-base: E2Eテスト生成基盤 (#22)
+  - Playwrightベースのテストテンプレート
+  - generate-e2eスキル
+- e2e-xss: XSS E2Eテスト生成 (#23)
+  - Reflected/DOM/Stored XSSテストテンプレート
+- e2e-csrf: CSRF E2Eテスト生成 (#24)
+  - トークン検証、SameSite Cookie検証
+
 ## [1.2.0] - 2025-12-25
 
 ### Added
@@ -56,11 +80,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## Roadmap
 
-### v2.0 - E2E Test Generation (Planned)
-- e2e-generator-base: E2Eテスト生成基盤
-- e2e-xss: XSS E2Eテスト生成
-- e2e-csrf: CSRF E2Eテスト生成
-
-### v2.1 - E2E Extended (Planned)
-- e2e-auth: 認証バイパスE2Eテスト生成
-- e2e-ssrf: SSRF E2Eテスト生成
+### v2.2 - Improvements (Planned)
+- expect.poll()パターン改善 (#29)
+- Vue.js/React XSSパターン追加
+- Known Limitationsセクション整備
