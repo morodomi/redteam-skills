@@ -1,18 +1,20 @@
 ---
 name: xss-attacker
-description: XSS検出エージェント。静的解析でReflected XSS脆弱性を検出。
+description: XSS検出エージェント。静的解析でReflected/DOM/Stored XSS脆弱性を検出。
 allowed-tools: Read, Grep, Glob
 ---
 
 # XSS Attacker
 
-Reflected XSS脆弱性を静的解析で検出するエージェント。
+Reflected XSS、DOM XSS、Stored XSS脆弱性を静的解析で検出するエージェント。
 
 ## Detection Targets
 
 | Type | Description | Pattern |
 |------|-------------|---------|
 | Reflected XSS | ユーザー入力の直接出力 | エスケープなしのecho/print |
+| DOM XSS | クライアントサイドでのDOM操作 | innerHTML, document.write等 |
+| Stored XSS | DB保存後の出力 | 保存→取得→エスケープなし出力 |
 | Sanitization Missing | サニタイズ不備 | htmlspecialchars等の欠如 |
 
 ## Framework Detection Patterns
@@ -45,6 +47,32 @@ patterns:
   - 'document\.write\s*\('
 ```
 
+## DOM XSS Dangerous Patterns
+
+| Category | Sink | Pattern |
+|----------|------|---------|
+| DOM操作 | innerHTML | `\.innerHTML\s*=` |
+| DOM操作 | outerHTML | `\.outerHTML\s*=` |
+| DOM操作 | document.write | `document\.write\s*\(` |
+| 実行系 | eval | `eval\s*\(.*location` |
+| jQuery | html() | `\.html\s*\(` |
+| jQuery | append() | `\.append\s*\(` |
+
+Sources（トレース対象）:
+- `location.hash`, `location.search`
+- `document.URL`, `document.referrer`
+- `window.name`
+
+## Stored XSS Detection Patterns
+
+| Framework | Save Pattern | Display Pattern |
+|-----------|-------------|-----------------|
+| Laravel | `->create($request->all())` | `{!! $model->field !!}` |
+| Django | `.objects.create(**request.POST)` | `{{ field\|safe }}` |
+| Express | `collection.insertOne(req.body)` | `innerHTML = data.field` |
+
+NOTE: 静的解析の限界上、保存と表示の紐付けは同一モデル/変数名での推定。
+
 ## Output Format
 
 ```json
@@ -66,17 +94,43 @@ patterns:
       "code": "{!! $request->input('name') !!}",
       "description": "User input rendered without escaping",
       "remediation": "Use {{ }} instead of {!! !!} for auto-escaping"
+    },
+    {
+      "id": "XSS-002",
+      "type": "dom",
+      "vulnerability_class": "xss",
+      "cwe_id": "CWE-79",
+      "severity": "high",
+      "file": "public/js/app.js",
+      "line": 45,
+      "code": "element.innerHTML = location.hash.slice(1)",
+      "description": "DOM XSS via location.hash to innerHTML",
+      "remediation": "Use textContent or sanitize input before innerHTML"
+    },
+    {
+      "id": "XSS-003",
+      "type": "stored",
+      "vulnerability_class": "xss",
+      "cwe_id": "CWE-79",
+      "severity": "critical",
+      "file": "resources/views/comments.blade.php",
+      "line": 12,
+      "code": "{!! $comment->body !!}",
+      "description": "Stored XSS via unescaped database content",
+      "remediation": "Use {{ }} for auto-escaping or sanitize on save"
     }
   ],
   "summary": {
-    "total": 1,
-    "critical": 0,
-    "high": 1,
+    "total": 3,
+    "critical": 1,
+    "high": 2,
     "medium": 0,
     "low": 0
   }
 }
 ```
+
+NOTE: `type` は `"reflected"`, `"dom"`, `"stored"` のいずれか。
 
 ## Severity Criteria
 
