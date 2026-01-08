@@ -113,6 +113,53 @@ RECON → SCAN → ATTACK → REPORT
 /security-scan
 ```
 
+## ロードマップ
+
+### v2.2 - 検出力強化
+
+| Feature | Description |
+|---------|-------------|
+| ssti-attacker | Server-Side Template Injection (Blade/Jinja2/Twig) |
+| xxe-attacker | XML External Entity Injection |
+| wordpress-attacker | WordPress固有の脆弱性検出 |
+
+### v2.3 - E2E検証拡張
+
+| Feature | Description |
+|---------|-------------|
+| e2e-sqli | SQLi E2Eテスト生成 |
+| e2e-ssti | SSTI E2Eテスト生成 |
+| dynamic全対応 | 全attackerにdynamicオプション追加 |
+
+### v3.0 - レポート強化
+
+| Feature | Description |
+|---------|-------------|
+| CVSS自動計算 | 検出結果からCVSS 4.0スコア自動算出 |
+| レポート品質向上 | エグゼクティブサマリ、改善提案詳細化 |
+| PDF出力 | 客先提出可能なPDFレポート |
+
+## 設計原則
+
+### Claude Skills としての考え方
+
+このプロジェクトはプログラムではなく **Claude Skills** である。
+
+| 観点 | 考え方 |
+|------|--------|
+| エージェント | プロンプトで定義されたAIの振る舞い |
+| スキル | ワークフローを定義したマークダウン |
+| 検出ロジック | 正規表現パターン + 文脈理解 |
+| 拡張方法 | .mdファイルの追加・編集 |
+
+### 静的解析の限界と対策
+
+| 限界 | 対策 |
+|------|------|
+| データフロー追跡困難 | パターンマッチ + AIによる文脈判断 |
+| ビジネスロジック | チェックリストベースのガイダンス |
+| 実行時の振る舞い | E2Eテスト生成で補完 |
+
 ## 参考資料
 
 - [OWASP Testing Guide](https://owasp.org/www-project-web-security-testing-guide/)

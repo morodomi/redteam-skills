@@ -159,11 +159,21 @@ See [CHANGELOG.md](CHANGELOG.md) for details.
 
 | Version | Changes |
 |---------|---------|
+| v2.1.0 | e2e-auth, e2e-ssrf, DOM/Stored XSS detection |
+| v2.0.0 | E2E test generation (e2e-xss, e2e-csrf) |
 | v1.2.0 | XSS dynamic verification |
 | v1.1.0 | vulnerability_class support |
 | v1.0.0 | All agents complete, dynamic testing |
 | v0.2.0 | auth/api-attacker, attack-report |
 | v0.1.0 | MVP (recon, injection, xss, security-scan) |
+
+## Roadmap
+
+| Version | Focus | Features |
+|---------|-------|----------|
+| v2.2 | Detection Enhancement | ssti-attacker, xxe-attacker, wordpress-attacker |
+| v2.3 | E2E Extension | e2e-sqli, e2e-ssti, dynamic for all attackers |
+| v3.0 | Report Enhancement | CVSS auto-calculation, PDF output |
 
 ## License
 

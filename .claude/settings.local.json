@@ -42,7 +42,22 @@
       "Skill(tdd-core:tdd-plan)",
       "Bash(./scripts/test-vulnerability-class.sh:*)",
       "Skill(tdd-core:quality-gate)",
-      "Skill(tdd-core:tdd-commit)"
+      "Skill(tdd-core:tdd-commit)",
+      "Bash(./scripts/test-attack-report-vuln-class.sh:*)",
+      "Bash(time bash:*)",
+      "Bash(git show:*)",
+      "Bash(shellcheck:*)",
+      "Bash(./scripts/test-command-injection.sh:*)",
+      "Bash(gh issue close:*)",
+      "Bash(./scripts/test-*.sh)",
+      "Bash(gh repo edit:*)",
+      "Bash(gh repo view:*)",
+      "WebFetch(domain:note.com)",
+      "Bash(./scripts/test-generate-e2e.sh:*)",
+      "Bash(./scripts/test-e2e-xss.sh:*)",
+      "Bash(/Users/morodomi/Documents/AgentSkills/redteam-skills/scripts/test-e2e-csrf.sh:*)",
+      "Bash(/Users/morodomi/Documents/AgentSkills/redteam-skills/scripts/test-e2e-auth.sh:*)",
+      "Bash(git tag:*)"
     ]
   }
 }

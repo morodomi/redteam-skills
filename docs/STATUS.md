@@ -68,6 +68,31 @@
 | 26 | e2e-ssrf: SSRF E2Eテスト生成 | Done |
 | 28 | xss-attacker: DOM/Stored XSS検出対応 | Done |
 
+### v2.2 - 検出力強化
+
+| # | Issue | Status |
+|---|-------|--------|
+| 31 | ssti-attacker: Server-Side Template Injection検出 | TODO |
+| 32 | xxe-attacker: XML External Entity Injection検出 | TODO |
+| 33 | wordpress-attacker: WordPress固有の脆弱性検出 | TODO |
+| 29 | expect.poll()パターン改善 | TODO |
+
+### v2.3 - E2E検証拡張
+
+| # | Issue | Status |
+|---|-------|--------|
+| 34 | e2e-sqli: SQLi E2Eテスト生成 | TODO |
+| 35 | e2e-ssti: SSTI E2Eテスト生成 | TODO |
+| 36 | dynamic全対応: 全attackerにdynamicオプション追加 | TODO |
+
+### v3.0 - レポート強化
+
+| # | Issue | Status |
+|---|-------|--------|
+| 37 | CVSS自動計算: CVSS 4.0スコア自動算出 | TODO |
+| 38 | レポート品質向上: エグゼクティブサマリ、改善提案詳細化 | TODO |
+| 39 | PDF出力: 客先提出可能なPDFレポート | TODO |
+
 ### Closed (Won't Fix)
 
 | # | Issue | Reason |
