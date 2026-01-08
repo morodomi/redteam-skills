@@ -6,7 +6,7 @@
 |------|-------|
 | Project | redteam-skills |
 | Current Version | 1.2.0 |
-| Last Updated | 2026-01-07 |
+| Last Updated | 2026-01-08 |
 
 ## Milestones
 
@@ -66,7 +66,7 @@
 |---|-------|--------|
 | 25 | e2e-auth: 認証バイパスE2Eテスト生成 | Done |
 | 26 | e2e-ssrf: SSRF E2Eテスト生成 | Done |
-| 28 | xss-attacker: DOM/Stored XSS検出対応 | Open |
+| 28 | xss-attacker: DOM/Stored XSS検出対応 | Done |
 
 ### Closed (Won't Fix)
 
@@ -80,6 +80,7 @@
 
 | Date | Feature | Issue | Status |
 |------|---------|-------|--------|
+| 2026-01-08 | xss-dom-stored | #28 | Done |
 | 2026-01-07 | e2e-ssrf | #26 | Done |
 | 2026-01-06 | e2e-auth | #25 | Done |
 | 2026-01-06 | e2e-csrf | #24 | Done |
