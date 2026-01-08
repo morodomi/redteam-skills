@@ -83,6 +83,18 @@ Error: File already exists (use --force to overwrite)
 | {{AUTH_PASSWORD}} | 認証用パスワード | password |
 | {{OTHER_USER_ID}} | 他ユーザーID（IDOR用） | 456 |
 
+### ssrf.spec.ts.tmpl
+
+| Variable | Description | Example |
+|----------|-------------|---------|
+| {{VULN_ID}} | 脆弱性ID | SSRF-001 |
+| {{ENDPOINT}} | テスト対象エンドポイント | /webhook/register |
+| {{INPUT_SELECTOR}} | URL入力フィールドセレクタ | #callback_url |
+| {{CALLBACK_PORT}} | コールバックサーバーポート | 9999 |
+| {{AUTH_ENDPOINT}} | 認証エンドポイント（認証必要時） | /login |
+| {{AUTH_EMAIL}} | 認証用メールアドレス | test@example.com |
+| {{AUTH_PASSWORD}} | 認証用パスワード | password |
+
 ## XSS Test Types
 
 XSSテストは3タイプに対応: reflected, dom, stored
@@ -129,6 +141,31 @@ playwright.config.tsのみが出力される。
 Auth脆弱性が0件の場合、auth.spec.tsは生成されない。
 playwright.config.tsのみが出力される。
 
+## SSRF Test Types
+
+SSRFテストは3タイプに対応: ssrf, blind-ssrf, partial-ssrf
+
+| Type | Description | Test Strategy |
+|------|-------------|---------------|
+| ssrf | 完全なURL制御によるSSRF | コールバックURL送信→受信確認 |
+| blind-ssrf | レスポンス非表示のSSRF | コールバックURL送信→受信確認 |
+| partial-ssrf | 部分的URL制御によるSSRF | コールバックURL送信→受信確認 |
+
+NOTE: すべてのタイプでローカルコールバックサーバー方式を使用。
+
+### Callback Server
+
+テスト実行時にlocalhost:{{CALLBACK_PORT}}でHTTPサーバーを起動し、SSRFの発生を検証。
+
+- beforeAll: サーバー起動（127.0.0.1にバインド）
+- afterAll: サーバー停止
+- beforeEach: receivedPathsリセット
+
+### Empty SSRF Vulnerabilities
+
+SSRF脆弱性が0件の場合、ssrf.spec.tsは生成されない。
+playwright.config.tsのみが出力される。
+
 ## Output Files
 
 ### playwright.config.ts
@@ -156,6 +193,7 @@ Playwright設定ファイル。以下を含む:
 | csrf | トークン検証、リクエスト送信 |
 | sqli | エラーメッセージ検証 |
 | auth-bypass | 認証状態検証 |
+| ssrf | コールバックサーバー検証 |
 
 ## Playwright Version
 
