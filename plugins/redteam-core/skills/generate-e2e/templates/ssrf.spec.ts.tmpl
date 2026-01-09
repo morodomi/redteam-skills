@@ -47,13 +47,12 @@ test.describe('SSRF Security Tests', () => {
     await page.fill('{{INPUT_SELECTOR}}', callbackUrl);
     await page.click('button[type="submit"]');
 
-    // Wait for callback (3s timeout)
-    await page.waitForTimeout(3000);
-
-    // PoC: Verify SSRF occurred (callback received)
+    // Poll for callback with early exit (Playwright best practice)
     // Test PASSES when callback is received (vulnerability EXISTS)
-    const received = receivedPaths.some(p => p.includes('ssrf-'));
-    expect(received).toBe(true);
+    await expect.poll(
+      () => receivedPaths.some(p => p.includes('ssrf-')),
+      { timeout: 3000, intervals: [100] }
+    ).toBe(true);
   });
 
   /**
@@ -78,11 +77,10 @@ test.describe('SSRF Security Tests', () => {
     await page.fill('{{INPUT_SELECTOR}}', callbackUrl);
     await page.click('button[type="submit"]');
 
-    // Wait for callback (3s timeout)
-    await page.waitForTimeout(3000);
-
-    // PoC: Verify SSRF occurred (callback received)
-    const received = receivedPaths.some(p => p.includes('ssrf-auth-'));
-    expect(received).toBe(true);
+    // Poll for callback with early exit (Playwright best practice)
+    await expect.poll(
+      () => receivedPaths.some(p => p.includes('ssrf-auth-')),
+      { timeout: 3000, intervals: [100] }
+    ).toBe(true);
   });
 });
