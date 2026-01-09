@@ -89,7 +89,7 @@
 
 | # | Issue | Status |
 |---|-------|--------|
-| 37 | CVSS自動計算: CVSS 4.0スコア自動算出 | TODO |
+| 37 | CVSS自動計算: CVSS 4.0スコア自動算出 | Done |
 | 38 | レポート品質向上: エグゼクティブサマリ、改善提案詳細化 | TODO |
 | 39 | PDF出力: 客先提出可能なPDFレポート | TODO |
 
@@ -105,6 +105,7 @@
 
 | Date | Feature | Issue | Status |
 |------|---------|-------|--------|
+| 2026-01-09 | cvss-auto-calc | #37 | Done |
 | 2026-01-09 | dynamic-all | #36 | Done |
 | 2026-01-09 | e2e-ssti | #35 | Done |
 | 2026-01-09 | e2e-sqli | #34 | Done |
