@@ -4,6 +4,21 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [2.3.0] - 2026-01-09
+
+### Added
+- e2e-sqli: SQLi E2Eテスト生成 (#34)
+  - Error-based, Union-based, Boolean-blind, Time-blind対応
+  - 5つのテストパターン（認証付き含む）
+- e2e-ssti: SSTI E2Eテスト生成 (#35)
+  - Jinja2, Twig, Blade, ERB, Freemarker対応
+  - Universal/Engine-specificテストパターン
+- dynamic-verifier拡張 (#36)
+  - Auth: 認証バイパス検証 (--enable-dynamic-auth)
+  - CSRF: CSRFトークン検証 (--enable-dynamic-csrf)
+  - SSRF: コールバック検証 (--enable-dynamic-ssrf)
+  - File: ファイル読取検証 (--enable-dynamic-file)
+
 ## [2.2.0] - 2026-01-09
 
 ### Added
@@ -98,11 +113,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - attack-report: レポート出力スキル
 
 ## Roadmap
-
-### v2.3 - E2E検証拡張 (Planned)
-- e2e-sqli: SQLi E2Eテスト生成 (#34)
-- e2e-ssti: SSTI E2Eテスト生成 (#35)
-- dynamic全対応: 全attackerにdynamicオプション追加 (#36)
 
 ### v3.0 - レポート強化 (Planned)
 - CVSS自動計算: CVSS 4.0スコア自動算出 (#37)

@@ -5,7 +5,7 @@
 | Item | Value |
 |------|-------|
 | Project | redteam-skills |
-| Current Version | 2.2.0 |
+| Current Version | 2.3.0 |
 | Last Updated | 2026-01-09 |
 
 ## Milestones
@@ -81,9 +81,9 @@
 
 | # | Issue | Status |
 |---|-------|--------|
-| 34 | e2e-sqli: SQLi E2Eテスト生成 | TODO |
-| 35 | e2e-ssti: SSTI E2Eテスト生成 | TODO |
-| 36 | dynamic全対応: 全attackerにdynamicオプション追加 | TODO |
+| 34 | e2e-sqli: SQLi E2Eテスト生成 | Done |
+| 35 | e2e-ssti: SSTI E2Eテスト生成 | Done |
+| 36 | dynamic全対応: 全attackerにdynamicオプション追加 | Done |
 
 ### v3.0 - レポート強化
 
@@ -105,6 +105,9 @@
 
 | Date | Feature | Issue | Status |
 |------|---------|-------|--------|
+| 2026-01-09 | dynamic-all | #36 | Done |
+| 2026-01-09 | e2e-ssti | #35 | Done |
+| 2026-01-09 | e2e-sqli | #34 | Done |
 | 2026-01-09 | expect-poll-pattern | #29 | Done |
 | 2026-01-09 | wordpress-attacker | #33 | Done |
 | 2026-01-08 | xxe-attacker | #32 | Done |
