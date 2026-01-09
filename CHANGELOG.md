@@ -4,6 +4,25 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [2.2.0] - 2026-01-09
+
+### Added
+- ssti-attacker: Server-Side Template Injection検出 (#31)
+  - Jinja2, Twig, Blade, ERB, Freemarker, Velocity, Thymeleaf, Smarty, Pebble対応
+  - CWE-1336 / A03:2021 Injection
+- xxe-attacker: XML External Entity Injection検出 (#32)
+  - PHP, Python, Java, Node.js, Go対応
+  - CWE-611 / A05:2021 Security Misconfiguration
+- wordpress-attacker: WordPress固有の脆弱性検出 (#33)
+  - SQLi ($wpdb), XSS, LFI, Privilege Escalation, Misconfiguration
+  - REST API permission_callback, XML-RPC, User Enumeration, Object Injection
+  - CWE-89/79/98/862/16/203/502対応
+
+### Changed
+- e2e-ssrf: waitForTimeout(3000)をexpect.poll()に改善 (#29)
+  - Playwright推奨パターン適用
+  - テスト実行時間短縮（早期終了）
+
 ## [2.1.0] - 2026-01-08
 
 ### Added
@@ -80,7 +99,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## Roadmap
 
-### v2.2 - Improvements (Planned)
-- expect.poll()パターン改善 (#29)
-- Vue.js/React XSSパターン追加
-- Known Limitationsセクション整備
+### v2.3 - E2E検証拡張 (Planned)
+- e2e-sqli: SQLi E2Eテスト生成 (#34)
+- e2e-ssti: SSTI E2Eテスト生成 (#35)
+- dynamic全対応: 全attackerにdynamicオプション追加 (#36)
+
+### v3.0 - レポート強化 (Planned)
+- CVSS自動計算: CVSS 4.0スコア自動算出 (#37)
+- レポート品質向上: エグゼクティブサマリ、改善提案詳細化 (#38)
+- PDF出力: 客先提出可能なPDFレポート (#39)
