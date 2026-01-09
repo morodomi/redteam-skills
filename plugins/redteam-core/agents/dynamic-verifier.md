@@ -1,6 +1,6 @@
 ---
 name: dynamic-verifier
-description: 静的解析結果を動的に検証するエージェント。SQLi/XSS検証対応。
+description: 静的解析結果を動的に検証するエージェント。SQLi/XSS/Auth/CSRF/SSRF/File検証対応。
 allowed-tools: Bash, Read
 ---
 
@@ -51,6 +51,10 @@ preprocessing:
 |------|---------------------|------|
 | SQLi | エラーベース検出（`'` 挿入→SQLエラーメッセージ確認） | --dynamic |
 | XSS | 反射検出（ペイロード挿入→レスポンスで反射確認） | --enable-dynamic-xss |
+| Auth | 認証バイパス検出（認証なしで保護リソースアクセス確認） | --enable-dynamic-auth |
+| CSRF | CSRFトークン検証（トークンなしリクエスト受理確認） | --enable-dynamic-csrf |
+| SSRF | コールバック検出（外部URL指定→コールバック受信確認） | --enable-dynamic-ssrf |
+| File | ファイル読取検出（パストラバーサル→既知ファイル内容確認） | --enable-dynamic-file |
 
 ## SQLi Detection Patterns
 
@@ -284,3 +288,219 @@ done
 | not_vulnerable | エンコード済み or 反射なし |
 | inconclusive | タイムアウト |
 | skipped | 到達不能 or Content-Type非対象 |
+
+---
+
+## Auth Verification
+
+認証バイパス脆弱性を動的に検証する。`--enable-dynamic-auth` フラグで有効化。
+
+### Auth Detection Patterns
+
+```yaml
+auth_bypass_checks:
+  # 1. 認証なしで保護リソースアクセス
+  unauthenticated_access:
+    - GET protected endpoint without session
+    - Check for 200 OK (should be 401/403)
+
+  # 2. ロール昇格
+  privilege_escalation:
+    - Access admin endpoint with user session
+    - Check for 200 OK (should be 403)
+
+  # 3. IDOR
+  idor:
+    - Access other user's resource with valid session
+    - Check for 200 OK with other user's data
+```
+
+### Auth Payloads
+
+```yaml
+auth_payloads:
+  non_destructive:
+    - "GET /admin without cookie"
+    - "GET /api/users/1 with user_id=2 session"
+    - "GET /profile?id=other_user_id"
+
+  forbidden:
+    - "DELETE /users"
+    - "PUT /users/*/role"
+    - Any data modification
+```
+
+### Auth Verification Result
+
+| Result | Condition |
+|--------|-----------|
+| confirmed | 認証なしで保護リソースにアクセス成功 |
+| not_vulnerable | 適切に401/403返却 |
+| inconclusive | タイムアウト or 予期しないレスポンス |
+
+---
+
+## CSRF Verification
+
+CSRF脆弱性を動的に検証する。`--enable-dynamic-csrf` フラグで有効化。
+
+### CSRF Detection Patterns
+
+```yaml
+csrf_checks:
+  # 1. CSRFトークンなしでリクエスト
+  missing_token:
+    - POST without _token parameter
+    - Check for 200 OK (should be 403/419)
+
+  # 2. 無効トークンでリクエスト
+  invalid_token:
+    - POST with _token=invalid
+    - Check for 200 OK (should be 403/419)
+
+  # 3. SameSite Cookie
+  samesite_check:
+    - Check Set-Cookie header for SameSite attribute
+```
+
+### CSRF Payloads
+
+```yaml
+csrf_payloads:
+  non_destructive:
+    - "POST /profile (read-only endpoint) without token"
+    - "POST /settings with invalid token"
+
+  forbidden:
+    - Any state-changing operations
+    - Password change
+    - Email change
+    - Account deletion
+```
+
+### CSRF Verification Result
+
+| Result | Condition |
+|--------|-----------|
+| confirmed | トークンなしでPOST成功 |
+| not_vulnerable | 適切に403/419返却 |
+| inconclusive | タイムアウト or 予期しないレスポンス |
+
+---
+
+## SSRF Verification
+
+SSRF脆弱性を動的に検証する。`--enable-dynamic-ssrf` フラグで有効化。
+
+### SSRF Detection Patterns
+
+```yaml
+ssrf_checks:
+  # 1. ローカルコールバック
+  callback:
+    - Start local HTTP server
+    - Submit callback URL to target
+    - Check if callback received
+
+  # 2. DNS Canary
+  dns_canary:
+    - Use unique subdomain
+    - Check DNS query log
+```
+
+### SSRF Payloads
+
+```yaml
+ssrf_payloads:
+  non_destructive:
+    - "http://localhost:CALLBACK_PORT/ssrf-test"
+    - "http://127.0.0.1:CALLBACK_PORT/verify"
+
+  forbidden:
+    - Internal IP ranges (10.x, 172.16.x, 192.168.x)
+    - Cloud metadata (169.254.169.254)
+    - File protocol (file://)
+```
+
+### SSRF Callback Server
+
+```bash
+# Simple callback server
+nc -l -p $CALLBACK_PORT &
+SERVER_PID=$!
+
+# Submit SSRF payload
+curl "$target$endpoint?url=http://localhost:$CALLBACK_PORT/ssrf-$uuid"
+
+# Wait for callback (max 5s)
+sleep 5
+
+# Check if request received
+if grep -q "ssrf-$uuid" /tmp/ssrf_log; then
+  echo "SSRF confirmed"
+fi
+
+kill $SERVER_PID 2>/dev/null
+```
+
+### SSRF Verification Result
+
+| Result | Condition |
+|--------|-----------|
+| confirmed | コールバック受信 |
+| not_vulnerable | コールバックなし (5秒タイムアウト) |
+| inconclusive | サーバーエラー |
+
+---
+
+## File Verification
+
+ファイル読取脆弱性を動的に検証する。`--enable-dynamic-file` フラグで有効化。
+
+### File Detection Patterns
+
+```yaml
+file_checks:
+  # 1. パストラバーサル
+  path_traversal:
+    - "../../etc/passwd"
+    - Check for "root:" in response
+
+  # 2. LFI
+  local_file_inclusion:
+    - "/etc/passwd"
+    - Check for known file content
+```
+
+### File Payloads
+
+```yaml
+file_payloads:
+  non_destructive:
+    - "../../etc/passwd"
+    - "../../../etc/passwd"
+    - "....//....//etc/passwd"
+    - "/etc/passwd"
+
+  expected_content:
+    linux:
+      - "root:"
+      - "/bin/bash"
+      - "/bin/sh"
+    windows:
+      - "[boot loader]"
+      - "[operating systems]"
+
+  forbidden:
+    - Write operations
+    - Log poisoning payloads
+    - PHP wrapper exploitation
+```
+
+### File Verification Result
+
+| Result | Condition |
+|--------|-----------|
+| confirmed | 既知ファイル内容がレスポンスに含まれる |
+| not_vulnerable | ファイル内容なし or エラー |
+| inconclusive | タイムアウト |
