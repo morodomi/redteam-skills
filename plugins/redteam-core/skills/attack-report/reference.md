@@ -131,6 +131,9 @@ security-scan出力のJSON形式を入力として受け取る。
 | lfi | CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:N/VA:N/SC:N/SI:N/SA:N | 7.5 |
 | arbitrary-file-upload | CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N | 9.0 |
 | csrf | CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:A/VC:N/VI:L/VA:N/SC:N/SI:N/SA:N | 5.1 |
+| ssti | CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N | 9.3 |
+| xxe | CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:N/VA:N/SC:H/SI:N/SA:N | 8.2 |
+| object-injection | CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N | 9.3 |
 
 ### Agent to Type Mapping
 
@@ -145,6 +148,9 @@ security-scan出力のJSON形式を入力として受け取る。
 | file-attacker | path-traversal |
 | ssrf-attacker | ssrf |
 | csrf-attacker | csrf |
+| ssti-attacker | ssti |
+| xxe-attacker | xxe |
+| wordpress-attacker | sql-injection |
 
 ## CWE/OWASP Mapping
 
@@ -176,6 +182,9 @@ security-scan出力のJSON形式を入力として受け取る。
 | lfi | CWE-98 | A05:2025 |
 | arbitrary-file-upload | CWE-434 | A01:2025 |
 | csrf | CWE-352 | A01:2025 |
+| ssti | CWE-1336 | A03:2025 |
+| xxe | CWE-611 | A05:2025 |
+| object-injection | CWE-502 | A08:2025 |
 
 ## Link Templates
 
