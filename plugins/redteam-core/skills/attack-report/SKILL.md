@@ -50,6 +50,32 @@ Markdown形式のレポートを生成。脆弱性はCVSSスコア降順でソ�
 ```markdown
 # Security Scan Report
 
+## Executive Summary
+
+### リスク評価
+
+| 評価項目 | 結果 |
+|----------|------|
+| **総合リスク** | High |
+| **検出件数** | Critical: 0, High: 2, Medium: 1, Low: 0 |
+| **対象システム** | Laravel Application |
+
+### 優先対応 Top 3
+
+| 優先度 | 脆弱性 | CVSS | 対応期限 |
+|--------|--------|------|----------|
+| 1 | SQL Injection (SQLI-001) | 9.3 | 即時 |
+| 2 | XSS (XSS-001) | 7.2 | 1週間以内 |
+| 3 | CSRF (CSRF-001) | 5.1 | 次スプリント |
+
+### 影響を受けるシステム
+
+- `app/Controllers/UserController.php`
+- `app/Controllers/AuthController.php`
+- `resources/views/user.blade.php`
+
+---
+
 ## Summary
 
 | Item | Value |

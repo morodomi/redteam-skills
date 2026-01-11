@@ -201,6 +201,59 @@ OWASP API: https://owasp.org/API-Security/editions/2023/en/0xa{X}-{kebab-case-na
 - https://owasp.org/Top10/2025/A05_2025-Injection/
 - https://owasp.org/API-Security/editions/2023/en/0xa1-broken-object-level-authorization/
 
+## Remediation Templates
+
+フレームワーク別の具体的な修正例。
+
+### Laravel
+
+| 脆弱性 | 脆弱なコード | 修正例 |
+|--------|-------------|--------|
+| SQLi | `DB::select("SELECT * FROM users WHERE id = $id")` | `DB::select("SELECT * FROM users WHERE id = ?", [$id])` |
+| XSS | `{!! $input !!}` | `{{ $input }}` |
+| CSRF | `Route::post('/update', ...)` (without middleware) | `Route::post('/update', ...)->middleware('csrf')` |
+| Mass Assignment | `User::create($request->all())` | `User::create($request->only(['name', 'email']))` |
+
+### Django
+
+| 脆弱性 | 脆弱なコード | 修正例 |
+|--------|-------------|--------|
+| SQLi | `cursor.execute(f"SELECT * FROM users WHERE id = {id}")` | `cursor.execute("SELECT * FROM users WHERE id = %s", [id])` |
+| XSS | `{{ input\|safe }}` | `{{ input }}` |
+| CSRF | `@csrf_exempt` | Remove decorator, use `{% csrf_token %}` |
+
+### Express
+
+| 脆弱性 | 脆弱なコード | 修正例 |
+|--------|-------------|--------|
+| SQLi | `` `SELECT * FROM users WHERE id = ${id}` `` | `db.query("SELECT * FROM users WHERE id = ?", [id])` |
+| XSS | `res.send(userInput)` | `res.send(escapeHtml(userInput))` or use template engine |
+| SSRF | `axios.get(userUrl)` | Validate URL against allowlist |
+
+### Flask
+
+| 脆弱性 | 脆弱なコード | 修正例 |
+|--------|-------------|--------|
+| SQLi | `db.execute(f"SELECT * FROM users WHERE id = {id}")` | `db.execute("SELECT * FROM users WHERE id = ?", (id,))` |
+| SSTI | `render_template_string(user_input)` | `render_template('template.html', data=user_input)` |
+
+## Glossary (用語集)
+
+| 用語 | 説明 |
+|------|------|
+| CVSS | Common Vulnerability Scoring System - 脆弱性の深刻度を数値化する業界標準 |
+| CWE | Common Weakness Enumeration - 脆弱性タイプの分類体系 |
+| OWASP | Open Web Application Security Project - Webセキュリティのガイドラインを策定する非営利団体 |
+| SQLi | SQL Injection - SQLクエリにユーザー入力が挿入される脆弱性 |
+| XSS | Cross-Site Scripting - 悪意のあるスクリプトがWebページに挿入される脆弱性 |
+| CSRF | Cross-Site Request Forgery - ユーザーの意図しないリクエストを送信させる攻撃 |
+| SSRF | Server-Side Request Forgery - サーバーから任意のURLにリクエストを送信させる攻撃 |
+| SSTI | Server-Side Template Injection - テンプレートエンジンにコードを挿入する攻撃 |
+| XXE | XML External Entity - XML解析時に外部エンティティを読み込ませる攻撃 |
+| RCE | Remote Code Execution - リモートから任意のコードを実行する攻撃 |
+| LFI | Local File Inclusion - ローカルファイルを読み込ませる脆弱性 |
+| BOLA | Broken Object Level Authorization - オブジェクトレベルの認可不備 |
+
 ## References
 
 - [security-scan](../security-scan/SKILL.md)
