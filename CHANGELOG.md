@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [3.0.0] - 2026-01-11
+
+### Added
+- CVSS自動計算: 新規脆弱性タイプ対応 (#37)
+  - ssti (9.3), xxe (8.2), object-injection (9.3) CVSSマッピング追加
+  - ssti-attacker, xxe-attacker, wordpress-attacker Agent to Type Mapping追加
+  - CWE-1336, CWE-611, CWE-502 マッピング追加
+- レポート品質向上 (#38)
+  - Executive Summary: リスク評価、優先対応Top3、影響システム一覧
+  - Remediation Templates: Laravel, Django, Express, Flask対応
+  - Glossary: 12セキュリティ用語の解説
+
 ## [2.3.0] - 2026-01-09
 
 ### Added
@@ -114,7 +126,4 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## Roadmap
 
-### v3.0 - レポート強化 (Planned)
-- CVSS自動計算: CVSS 4.0スコア自動算出 (#37)
-- レポート品質向上: エグゼクティブサマリ、改善提案詳細化 (#38)
-- PDF出力: 客先提出可能なPDFレポート (#39)
+v3.0完了。次期ロードマップは未定。

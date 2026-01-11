@@ -5,8 +5,8 @@
 | Item | Value |
 |------|-------|
 | Project | redteam-skills |
-| Current Version | 2.3.0 |
-| Last Updated | 2026-01-09 |
+| Current Version | 3.0.0 |
+| Last Updated | 2026-01-11 |
 
 ## Milestones
 
