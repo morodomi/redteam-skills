@@ -91,7 +91,7 @@
 |---|-------|--------|
 | 37 | CVSS自動計算: CVSS 4.0スコア自動算出 | Done |
 | 38 | レポート品質向上: エグゼクティブサマリ、改善提案詳細化 | Done |
-| 39 | PDF出力: 客先提出可能なPDFレポート | TODO |
+| 39 | PDF出力: 客先提出可能なPDFレポート | Won't Fix |
 
 ### Closed (Won't Fix)
 
@@ -100,6 +100,7 @@
 | 14 | CI/CD統合 | Plugin配布のため不要 |
 | 15 | カスタムルール対応 | 既存エージェントで十分 |
 | 18 | dynamic-ssrf: SSRFコールバック検証 | OOBはスコープ外、#26で代替 |
+| 39 | PDF出力: 客先提出可能なPDFレポート | Markdownで十分、pandoc等で変換可能 |
 
 ## Recent Cycles
 
