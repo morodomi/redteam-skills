@@ -93,6 +93,32 @@
 | 38 | レポート品質向上: エグゼクティブサマリ、改善提案詳細化 | Done |
 | 39 | PDF出力: 客先提出可能なPDFレポート | Won't Fix |
 
+### v4.0 - SCA統合 (Planned)
+
+| # | Issue | Status |
+|---|-------|--------|
+| 40 | sca-attacker: 依存関係脆弱性検出エージェント | Planned |
+| 41 | sca-scan: OSV API連携スキル | Planned |
+
+### v4.1 - クローラー (Planned)
+
+| # | Issue | Status |
+|---|-------|--------|
+| 42 | dast-crawler: PlaywrightベースのURL自動発見 | Planned |
+
+### v4.2 - 攻撃シナリオ (Planned)
+
+| # | Issue | Status |
+|---|-------|--------|
+| 43 | attack-scenario: 攻撃シナリオ自動生成 | Planned |
+
+### v5.0 - ビジネスロジック (Planned)
+
+| # | Issue | Status |
+|---|-------|--------|
+| 44 | context-reviewer: ビジネスロジックレビュー | Planned |
+| 45 | false-positive-filter: 誤検知自動除外 | Planned |
+
 ### Closed (Won't Fix)
 
 | # | Issue | Reason |

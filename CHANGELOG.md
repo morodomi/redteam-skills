@@ -126,4 +126,22 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## Roadmap
 
-v3.0完了。次期ロードマップは未定。
+### v4.0 - SCA統合 (Planned)
+
+- sca-attacker: 依存関係脆弱性検出エージェント (#40)
+- sca-scan: OSV API連携スキル (#41)
+
+### v4.1 - クローラー (Planned)
+
+- dast-crawler: PlaywrightベースのURL自動発見 (#42)
+
+### v4.2 - 攻撃シナリオ (Planned)
+
+- attack-scenario: 攻撃シナリオ自動生成 (#43)
+
+### v5.0 - ビジネスロジック (Planned)
+
+- context-reviewer: ビジネスロジックレビュー (#44)
+- false-positive-filter: 誤検知自動除外 (#45)
+
+詳細: [docs/plans/20260112_external-audit-replacement.md](docs/plans/20260112_external-audit-replacement.md)
