@@ -97,7 +97,7 @@
 
 | # | Issue | Status |
 |---|-------|--------|
-| 40 | sca-attacker: 依存関係脆弱性検出エージェント | Planned |
+| 40 | sca-attacker: 依存関係脆弱性検出エージェント | Done |
 | 41 | sca-scan: OSV API連携スキル | Planned |
 
 ### v4.1 - クローラー (Planned)
@@ -132,6 +132,7 @@
 
 | Date | Feature | Issue | Status |
 |------|---------|-------|--------|
+| 2026-01-14 | sca-attacker | #40 | Done |
 | 2026-01-11 | report-quality | #38 | Done |
 | 2026-01-09 | cvss-auto-calc | #37 | Done |
 | 2026-01-09 | dynamic-all | #36 | Done |
