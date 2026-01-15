@@ -27,6 +27,7 @@ RECONの結果に基づき、以下のエージェントを**並行実行**:
 | xss-attacker | Reflected XSS, Sanitization Missing |
 | crypto-attacker | Debug mode, Weak hash/crypto, Default credentials, CORS |
 | error-attacker | Empty catch, Fail-open, Generic exception |
+| sca-attacker | Dependency vulnerabilities (OSV API) |
 
 **並行実行の利点**:
 - スキャン時間の短縮
@@ -71,6 +72,11 @@ RECONの結果に基づき、以下のエージェントを**並行実行**:
     "framework": "string",
     "endpoints_count": "number",
     "high_priority_count": "number"
+  },
+  "sca": {
+    "packages_scanned": "number",
+    "vulnerable_count": "number",
+    "ecosystems": "string[] (npm, Packagist, PyPI, Go, etc.)"
   },
   "vulnerabilities": {
     "total": "number",
@@ -129,4 +135,5 @@ RECONの結果に基づき、以下のエージェントを**並行実行**:
 - [xss-attacker](../../agents/xss-attacker.md)
 - [crypto-attacker](../../agents/crypto-attacker.md)
 - [error-attacker](../../agents/error-attacker.md)
+- [sca-attacker](../../agents/sca-attacker.md)
 - [dynamic-verifier](../../agents/dynamic-verifier.md)

@@ -18,6 +18,9 @@ description: セキュリティスキャンを実行。RECON→SCAN→REPORTワ�
 
 # XSS動的検証も有効化
 /security-scan ./src --dynamic --enable-dynamic-xss --target http://localhost:8000
+
+# SCAスキャンをスキップ
+/security-scan ./src --no-sca
 ```
 
 ## Options
@@ -27,6 +30,7 @@ description: セキュリティスキャンを実行。RECON→SCAN→REPORTワ�
 | --dynamic | SQLi動的テストを有効化 | No |
 | --enable-dynamic-xss | XSS動的テストを有効化 | No |
 | --target | 検証対象URL | Yes (if --dynamic or --enable-dynamic-xss) |
+| --no-sca | SCAスキャンをスキップ | No |
 
 ## Workflow
 
@@ -41,7 +45,8 @@ description: セキュリティスキャンを実行。RECON→SCAN→REPORTワ�
    ├── injection-attacker（SQLi検出）
    ├── xss-attacker（XSS検出）
    ├── crypto-attacker（暗号・設定脆弱性）
-   └── error-attacker（例外処理脆弱性）
+   ├── error-attacker（例外処理脆弱性）
+   └── sca-attacker（依存関係脆弱性検出）
 
 3. REPORT Phase
    └── 結果を統合してJSON出力
@@ -56,6 +61,7 @@ description: セキュリティスキャンを実行。RECON→SCAN→REPORTワ�
 | SCAN | xss-attacker | XSS脆弱性検出 |
 | SCAN | crypto-attacker | 暗号・設定脆弱性検出 |
 | SCAN | error-attacker | 例外処理脆弱性検出 |
+| SCAN | sca-attacker | 依存関係脆弱性検出（OSV API） |
 
 ## Output Format
 
@@ -70,6 +76,11 @@ description: セキュリティスキャンを実行。RECON→SCAN→REPORTワ�
     "framework": "Laravel",
     "endpoints_count": 15,
     "high_priority_count": 5
+  },
+  "sca": {
+    "packages_scanned": 45,
+    "vulnerable_count": 3,
+    "ecosystems": ["npm", "Packagist"]
   },
   "vulnerabilities": {
     "total": 3,
