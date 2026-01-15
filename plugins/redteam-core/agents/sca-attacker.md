@@ -32,7 +32,24 @@ allowed-tools: Read, Grep, Glob, Bash
     ]
   }
   ```
-- Response: vulns array with CVE/GHSA IDs
+- Response Format:
+  ```json
+  {
+    "results": [
+      {
+        "vulns": [
+          {
+            "id": "GHSA-xxxx-xxxx-xxxx",
+            "summary": "Prototype Pollution in lodash",
+            "severity": [{ "type": "CVSS_V3", "score": "7.5" }],
+            "affected": [{ "package": {...}, "ranges": [...] }],
+            "references": [{ "type": "ADVISORY", "url": "..." }]
+          }
+        ]
+      }
+    ]
+  }
+  ```
 - Batch Size: Max 100 queries per request (recommended)
 
 ### HTTP Execution
@@ -58,9 +75,19 @@ curl -s -X POST https://api.osv.dev/v1/querybatch \
 
 ## Fallback Strategy
 
-1. OSV API timeout (10s) → Retry once
+1. OSV API timeout (10s) → Exponential backoff (3回: 2s, 4s, 8s)
 2. OSV API error → Report as "api-unavailable", continue scan
 3. Offline mode → Not supported (require API)
+
+### Retry Strategy
+
+| Attempt | Delay | Total Wait |
+|---------|-------|------------|
+| 1st retry | 2s | 2s |
+| 2nd retry | 4s | 6s |
+| 3rd retry | 8s | 14s |
+
+Max total wait: 14s + timeout (10s) = 24s per batch
 
 ## Output Format
 
