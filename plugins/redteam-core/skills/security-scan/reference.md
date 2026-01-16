@@ -113,6 +113,30 @@ RECONの結果に基づき、以下のエージェントを**並行実行**:
 }
 ```
 
+## Naming Convention
+
+### vulnerability_class
+
+脆弱性カテゴリを示すフィールド。`vulnerability_class` format: lowercase-hyphenated。
+
+| Format | Rule |
+|--------|------|
+| 完全名 | `sql-injection`, `command-injection`, `path-traversal` |
+| 業界標準略称 | `xss`, `ssrf`, `csrf`, `xxe`, `ssti`, `lfi`, `bola` |
+
+**許可されない略称**: `sqli` (→ `sql-injection`), `cmdi` (→ `command-injection`)
+
+### type
+
+`vulnerability_class`内の具体的な攻撃手法/バリアントを示すフィールド。
+
+| vulnerability_class | type examples |
+|--------------------|---------------|
+| sql-injection | union-based, error-based, boolean-blind, time-blind |
+| xss | reflected, dom, stored |
+| csrf | csrf-token-missing, csrf-protection-disabled |
+| ssrf | ssrf, blind-ssrf, partial-ssrf |
+
 ## Error Handling
 
 | Error | Handling |

@@ -73,7 +73,7 @@ sanitization_patterns:
       - 'strip_tags\s*\('
       - '\{\{\s*\$'  # Blade auto-escape
       - 'e\s*\('     # Laravel helper
-    sqli:
+    sql-injection:
       - '->where\s*\([^,]+,\s*\?'
       - '->whereRaw\s*\([^,]+,\s*\['
       - 'DB::select\s*\([^,]+,\s*\['
@@ -83,7 +83,7 @@ sanitization_patterns:
       - 'escape\s*\('
       - '\{\{[^|]*\}\}'  # Jinja2 auto-escape
       # Note: mark_safe は除外対象外（エスケープ無効化のため脆弱）
-    sqli:
+    sql-injection:
       - 'execute\s*\([^,]+,\s*\['
       - 'execute\s*\([^,]+,\s*\('
       - '\.filter\s*\('  # Django ORM
@@ -93,7 +93,7 @@ sanitization_patterns:
       - 'textContent\s*='
       - 'encodeURIComponent\s*\('
       - 'DOMPurify\.sanitize\s*\('
-    sqli:
+    sql-injection:
       - '\?\s*,'  # Parameterized query
       - '\$\d+'   # Positional parameter
 ```
