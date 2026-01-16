@@ -30,14 +30,14 @@ security-scan が出力するJSON形式を入力として受け取る。
     "endpoints_count": 15,
     "high_priority_count": 5
   },
-  "vulnerabilities": {
+  "summary": {
     "total": 3,
     "critical": 0,
     "high": 2,
     "medium": 1,
     "low": 0
   },
-  "details": [...]
+  "vulnerabilities": [...]
 }
 ```
 

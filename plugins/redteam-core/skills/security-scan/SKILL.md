@@ -82,14 +82,14 @@ description: セキュリティスキャンを実行。RECON→SCAN→REPORTワ�
     "vulnerable_count": 3,
     "ecosystems": ["npm", "Packagist"]
   },
-  "vulnerabilities": {
+  "summary": {
     "total": 3,
     "critical": 0,
     "high": 2,
     "medium": 1,
     "low": 0
   },
-  "details": [
+  "vulnerabilities": [
     {
       "agent": "injection-attacker",
       "id": "SQLI-001",

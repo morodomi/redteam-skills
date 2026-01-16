@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [3.1.0] - 2026-01-16
+
+### Changed
+- **BREAKING**: 出力スキーマ統一 (#47)
+  - `vulnerabilities` (サマリ) → `summary` にリネーム
+  - `details` (配列) → `vulnerabilities` にリネーム
+  - 既存パターン（false-positive-filter, attack-scenario, sca-attacker）に統一
+  - 影響ファイル: security-scan, attack-report, generate-e2e, dynamic-verifier, README
+
 ## [3.0.0] - 2026-01-11
 
 ### Added

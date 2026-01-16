@@ -78,7 +78,7 @@ RECONの結果に基づき、以下のエージェントを**並行実行**:
     "vulnerable_count": "number",
     "ecosystems": "string[] (npm, Packagist, PyPI, Go, etc.)"
   },
-  "vulnerabilities": {
+  "summary": {
     "total": "number",
     "critical": "number",
     "high": "number",
@@ -92,7 +92,7 @@ RECONの結果に基づき、以下のエージェントを**並行実行**:
     "confirmed": "number (optional)",
     "false_positives": "number (optional)"
   },
-  "details": [
+  "vulnerabilities": [
     {
       "agent": "string",
       "id": "string",

@@ -168,7 +168,7 @@ interval: 2             # Request interval (seconds) - unified
     "confirmed": 1,
     "false_positives": 1
   },
-  "details": [
+  "vulnerabilities": [
     {
       "id": "SQLI-001",
       "verified": true,

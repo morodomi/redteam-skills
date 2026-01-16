@@ -21,14 +21,14 @@ security-scan出力のJSON形式を入力として受け取る。
     "endpoints_count": "number",
     "high_priority_count": "number"
   },
-  "vulnerabilities": {
+  "summary": {
     "total": "number",
     "critical": "number",
     "high": "number",
     "medium": "number",
     "low": "number"
   },
-  "details": [
+  "vulnerabilities": [
     {
       "agent": "string",
       "id": "string",
@@ -91,7 +91,7 @@ security-scan出力のJSON形式を入力として受け取る。
 |------|----------|
 | No vulnerabilities | "No vulnerabilities found" メッセージ表示 |
 | Missing optional fields | フィールドを省略して表示 |
-| Empty details array | 各重大度セクションに "(None)" 表示 |
+| Empty vulnerabilities array | 各重大度セクションに "(None)" 表示 |
 
 ## Limitations
 

@@ -33,14 +33,14 @@ security-scan が出力するJSON形式を入力として受け取る。
     "scanned_at": "<timestamp>",
     "target_directory": "<path>"
   },
-  "vulnerabilities": {
+  "summary": {
     "total": 3,
     "critical": 1,
     "high": 1,
     "medium": 1,
     "low": 0
   },
-  "details": [
+  "vulnerabilities": [
     {
       "id": "XSS-001",
       "vulnerability_class": "xss",

@@ -10,8 +10,8 @@
 |-------|------|-------------|
 | metadata | object | スキャンメタデータ |
 | metadata.scan_id | string | スキャンID (UUID) |
-| vulnerabilities | object | 脆弱性サマリー |
-| details | array | 脆弱性詳細リスト |
+| summary | object | 脆弱性サマリー |
+| vulnerabilities | array | 脆弱性詳細リスト |
 
 ### Validation Errors
 
@@ -19,7 +19,7 @@
 |-------|-------------|------------|
 | Invalid JSON | JSONパースエラー | JSONフォーマットを確認 |
 | Missing metadata | metadataフィールドがない | security-scan出力を使用 |
-| Missing details | detailsフィールドがない | security-scan出力を使用 |
+| Missing vulnerabilities | vulnerabilitiesフィールドがない | security-scan出力を使用 |
 | Invalid schema | 必須フィールドの欠落 | スキーマに従ったJSONを入力 |
 
 ### Error Handling
@@ -28,7 +28,7 @@
 Error: Invalid JSON input
   → JSONファイルのフォーマットを確認してください
 
-Error: Missing required field 'metadata'
+Error: Missing required field 'vulnerabilities'
   → security-scanの出力JSONを使用してください
 
 Error: File already exists (use --force to overwrite)

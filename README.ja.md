@@ -113,14 +113,14 @@
     "endpoints_count": 15,
     "high_priority_count": 5
   },
-  "vulnerabilities": {
+  "summary": {
     "total": 3,
     "critical": 1,
     "high": 1,
     "medium": 1,
     "low": 0
   },
-  "details": [
+  "vulnerabilities": [
     {
       "agent": "injection-attacker",
       "id": "SQLI-001",
