@@ -5,8 +5,8 @@
 | Item | Value |
 |------|-------|
 | Project | redteam-skills |
-| Current Version | 3.0.0 |
-| Last Updated | 2026-01-11 |
+| Current Version | 3.2.0 |
+| Last Updated | 2026-01-21 |
 
 ## Milestones
 
@@ -93,31 +93,29 @@
 | 38 | レポート品質向上: エグゼクティブサマリ、改善提案詳細化 | Done |
 | 39 | PDF出力: 客先提出可能なPDFレポート | Won't Fix |
 
-### v4.0 - SCA統合 (Planned)
+### v3.1 - スキーマ統一
+
+| # | Issue | Status |
+|---|-------|--------|
+| 47 | 出力スキーマ統一 | Done |
+| 48 | vulnerability_class命名規則統一 | Done |
+
+### v3.2 - SCA・DAST・分析強化
 
 | # | Issue | Status |
 |---|-------|--------|
 | 40 | sca-attacker: 依存関係脆弱性検出エージェント | Done |
-| 41 | sca-scan: OSV API連携スキル | Planned |
+| 41 | sca-scan: security-scanへのSCA統合 | Done |
+| 42 | dast-crawler: PlaywrightベースのURL自動発見 | Done |
+| 43 | attack-scenario: 攻撃シナリオ自動生成 | Done |
+| 45 | false-positive-filter: 誤検知自動除外 | Done |
+| 46 | sca-attacker-v4: OSV API改善 | Done |
 
-### v4.1 - クローラー (Planned)
-
-| # | Issue | Status |
-|---|-------|--------|
-| 42 | dast-crawler: PlaywrightベースのURL自動発見 | Planned |
-
-### v4.2 - 攻撃シナリオ (Planned)
-
-| # | Issue | Status |
-|---|-------|--------|
-| 43 | attack-scenario: 攻撃シナリオ自動生成 | Planned |
-
-### v5.0 - ビジネスロジック (Planned)
+### v4.0 - ビジネスロジック (Planned)
 
 | # | Issue | Status |
 |---|-------|--------|
 | 44 | context-reviewer: ビジネスロジックレビュー | Planned |
-| 45 | false-positive-filter: 誤検知自動除外 | Planned |
 
 ### Closed (Won't Fix)
 
@@ -132,6 +130,14 @@
 
 | Date | Feature | Issue | Status |
 |------|---------|-------|--------|
+| 2026-01-21 | changelog-release | - | Done |
+| 2026-01-16 | naming-unification | #48 | Done |
+| 2026-01-16 | schema-unification | #47 | Done |
+| 2026-01-15 | false-positive-filter | #45 | Done |
+| 2026-01-15 | attack-scenario | #43 | Done |
+| 2026-01-15 | sca-attacker-v4 | #46 | Done |
+| 2026-01-15 | dast-crawler | #42 | Done |
+| 2026-01-14 | sca-scan | #41 | Done |
 | 2026-01-14 | sca-attacker | #40 | Done |
 | 2026-01-11 | report-quality | #38 | Done |
 | 2026-01-09 | cvss-auto-calc | #37 | Done |

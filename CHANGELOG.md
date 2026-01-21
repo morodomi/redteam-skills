@@ -4,6 +4,32 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [3.2.0] - 2026-01-21
+
+### Added
+- sca-attacker: 依存関係脆弱性検出エージェント (#40)
+  - OSV API連携による脆弱性データベース照会
+  - package.json, composer.json, requirements.txt対応
+  - CWE-1395 / A06:2021 Vulnerable Components
+- sca-scan: security-scanへのSCA統合 (#41)
+  - SCAN PhaseにSCA自動実行を追加
+  - `--no-sca` オプションでスキップ可能
+- dast-crawler: Playwright URL自動発見エージェント (#42)
+  - JSで動的生成されるURLを検出
+  - フォーム・リンク自動探索
+- attack-scenario: 攻撃シナリオ自動生成エージェント (#43)
+  - 脆弱性チェーン分析
+  - 攻撃ステップと影響の可視化
+- false-positive-filter: 誤検知自動除外エージェント (#45)
+  - パターンベースの誤検知除外
+  - コンテキストベースの判定
+  - 除外理由の記録
+
+### Changed
+- sca-attacker: OSV API改善 (#46)
+  - Exponential backoff実装（3回リトライ: 2s, 4s, 8s）
+  - レスポンスフォーマット詳細化
+
 ## [3.1.0] - 2026-01-16
 
 ### Changed
@@ -12,6 +38,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   - `details` (配列) → `vulnerabilities` にリネーム
   - 既存パターン（false-positive-filter, attack-scenario, sca-attacker）に統一
   - 影響ファイル: security-scan, attack-report, generate-e2e, dynamic-verifier, README
+- vulnerability_class命名規則統一 (#48)
+  - `sqli` → `sql-injection` に統一
+  - 命名規則ドキュメント追加
 
 ## [3.0.0] - 2026-01-11
 
@@ -135,22 +164,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## Roadmap
 
-### v4.0 - SCA統合 (Planned)
-
-- sca-attacker: 依存関係脆弱性検出エージェント (#40)
-- sca-scan: OSV API連携スキル (#41)
-
-### v4.1 - クローラー (Planned)
-
-- dast-crawler: PlaywrightベースのURL自動発見 (#42)
-
-### v4.2 - 攻撃シナリオ (Planned)
-
-- attack-scenario: 攻撃シナリオ自動生成 (#43)
-
-### v5.0 - ビジネスロジック (Planned)
+### v4.0 - ビジネスロジック (Planned)
 
 - context-reviewer: ビジネスロジックレビュー (#44)
-- false-positive-filter: 誤検知自動除外 (#45)
+  - LLMを活用したビジネスコンテキスト理解
+  - 設計意図に基づく脆弱性判断
 
 詳細: [docs/plans/20260112_external-audit-replacement.md](docs/plans/20260112_external-audit-replacement.md)
