@@ -76,6 +76,26 @@ RECON → SCAN → ATTACK → REPORT
 3. **並行実行**: 複数エージェントの同時スキャン
 4. **エビデンス必須**: 検出には必ず根拠を添付
 
+## Claude Code Configuration
+
+| Directory | Content |
+|-----------|---------|
+| .claude/rules/ | Always-applied rules |
+| .claude/hooks/ | Recommended hooks settings |
+
+### Rules
+
+- tdd-workflow.md - TDD cycle enforcement
+- quality.md - Quality standards
+- security.md - Security checklist
+- testing-guide.md - Test guide
+- git-safety.md - Git safety rules
+- git-conventions.md - Git conventions
+
+### Hooks
+
+- recommended.md - Recommended hooks configuration
+
 ## ファイル命名規則
 
 - 設計ドキュメント: `docs/YYYYMMDD_HHMM_内容.md`
