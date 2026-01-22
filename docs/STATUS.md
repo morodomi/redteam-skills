@@ -118,6 +118,15 @@
 | 44 | context-review: 対話型コンテキストレビュー | Done |
 | 49 | pre-commit-hook: 全テスト自動実行 | Done |
 
+### v4.1 - tdd-skills互換構造
+
+| # | Issue | Status |
+|---|-------|--------|
+| 50 | v4.1 - tdd-skills互換構造への移行 | In Progress |
+| 51 | plugin.json バージョンを4.0.0に修正 | Open |
+| 52 | .claude/構造対応（tdd-skills互換） | Open |
+| 53 | docs: エージェント選択ガイド・使い方ドキュメント整備 | Done |
+
 ### Closed (Won't Fix)
 
 | # | Issue | Reason |
@@ -131,6 +140,7 @@
 
 | Date | Feature | Issue | Status |
 |------|---------|-------|--------|
+| 2026-01-22 | agent-usage-docs | #53 | Done |
 | 2026-01-22 | pre-commit-hook | #49 | Done |
 | 2026-01-22 | context-review | #44 | Done |
 | 2026-01-21 | changelog-release | - | Done |
