@@ -146,6 +146,12 @@ Or use interactive UI:
 - Go (Gin, Echo)
 - Java (Spring Boot)
 
+## Documentation
+
+- [Agent Guide](docs/AGENT_GUIDE.md) - 18 agents usage guide and framework matrix
+- [Workflow](docs/WORKFLOW.md) - RECON/SCAN/ATTACK/REPORT workflow details
+- [FAQ](docs/FAQ.md) - Frequently asked questions
+
 ## References
 
 - [OWASP Top 10 (2021)](https://owasp.org/Top10/)
