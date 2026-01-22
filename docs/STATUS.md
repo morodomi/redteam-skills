@@ -124,7 +124,7 @@
 |---|-------|--------|
 | 50 | v4.1 - tdd-skills互換構造への移行 | In Progress |
 | 51 | plugin.json バージョンを4.0.0に修正 | Open |
-| 52 | .claude/構造対応（tdd-skills互換） | Open |
+| 52 | .claude/構造対応（tdd-skills互換） | Done |
 | 53 | docs: エージェント選択ガイド・使い方ドキュメント整備 | Done |
 
 ### Closed (Won't Fix)
@@ -140,6 +140,7 @@
 
 | Date | Feature | Issue | Status |
 |------|---------|-------|--------|
+| 2026-01-22 | .claude-structure | #52 | Done |
 | 2026-01-22 | agent-usage-docs | #53 | Done |
 | 2026-01-22 | pre-commit-hook | #49 | Done |
 | 2026-01-22 | context-review | #44 | Done |
