@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [4.0.0] - 2026-01-22
+
+### Added
+- context-review: 対話型コンテキストレビュースキル (#44)
+  - ビジネスロジックの曖昧な項目をユーザーに質問して確認
+  - 4カテゴリの質問（auth-intent, error-handling, data-exposure, business-logic）
+  - resolution値による判定（excluded, confirmed, needs_review）
+  - security-scan, false-positive-filterとの連携
+
 ## [3.2.0] - 2026-01-21
 
 ### Added
@@ -164,10 +173,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## Roadmap
 
-### v4.0 - ビジネスロジック (Planned)
+### v5.0 - CI/CD統合 (Planned)
 
-- context-reviewer: ビジネスロジックレビュー (#44)
-  - LLMを活用したビジネスコンテキスト理解
-  - 設計意図に基づく脆弱性判断
+- 次期ロードマップ検討中
 
 詳細: [docs/plans/20260112_external-audit-replacement.md](docs/plans/20260112_external-audit-replacement.md)

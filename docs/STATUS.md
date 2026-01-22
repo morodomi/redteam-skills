@@ -5,8 +5,8 @@
 | Item | Value |
 |------|-------|
 | Project | redteam-skills |
-| Current Version | 3.2.0 |
-| Last Updated | 2026-01-21 |
+| Current Version | 4.0.0 |
+| Last Updated | 2026-01-22 |
 
 ## Milestones
 
@@ -111,11 +111,11 @@
 | 45 | false-positive-filter: 誤検知自動除外 | Done |
 | 46 | sca-attacker-v4: OSV API改善 | Done |
 
-### v4.0 - ビジネスロジック (Planned)
+### v4.0 - ビジネスロジック
 
 | # | Issue | Status |
 |---|-------|--------|
-| 44 | context-reviewer: ビジネスロジックレビュー | Planned |
+| 44 | context-review: 対話型コンテキストレビュー | Done |
 
 ### Closed (Won't Fix)
 
@@ -130,6 +130,7 @@
 
 | Date | Feature | Issue | Status |
 |------|---------|-------|--------|
+| 2026-01-22 | context-review | #44 | Done |
 | 2026-01-21 | changelog-release | - | Done |
 | 2026-01-16 | naming-unification | #48 | Done |
 | 2026-01-16 | schema-unification | #47 | Done |
