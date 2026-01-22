@@ -116,6 +116,7 @@
 | # | Issue | Status |
 |---|-------|--------|
 | 44 | context-review: 対話型コンテキストレビュー | Done |
+| 49 | pre-commit-hook: 全テスト自動実行 | Done |
 
 ### Closed (Won't Fix)
 
@@ -130,6 +131,7 @@
 
 | Date | Feature | Issue | Status |
 |------|---------|-------|--------|
+| 2026-01-22 | pre-commit-hook | #49 | Done |
 | 2026-01-22 | context-review | #44 | Done |
 | 2026-01-21 | changelog-release | - | Done |
 | 2026-01-16 | naming-unification | #48 | Done |
