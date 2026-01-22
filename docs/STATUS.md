@@ -122,7 +122,7 @@
 
 | # | Issue | Status |
 |---|-------|--------|
-| 50 | v4.1 - tdd-skills互換構造への移行 | In Progress |
+| 50 | v4.1 - tdd-skills互換構造への移行 | Done |
 | 51 | plugin.json バージョンを4.0.0に修正 | Done |
 | 52 | .claude/構造対応（tdd-skills互換） | Done |
 | 53 | docs: エージェント選択ガイド・使い方ドキュメント整備 | Done |
