@@ -1,0 +1,24 @@
+#!/bin/bash
+# scripts/pre-commit - Git pre-commit hook
+
+echo "Running pre-commit tests..."
+
+FAILED=0
+for test in scripts/test-*.sh; do
+    # Skip self-test to avoid infinite loop
+    if [ "$test" = "scripts/test-pre-commit-hook.sh" ]; then
+        continue
+    fi
+    if ! bash "$test" > /dev/null 2>&1; then
+        echo "FAIL: $test"
+        FAILED=1
+    fi
+done
+
+if [ $FAILED -eq 1 ]; then
+    echo "Pre-commit tests failed. Commit aborted."
+    exit 1
+fi
+
+echo "All tests passed."
+exit 0
