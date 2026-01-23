@@ -135,29 +135,48 @@ RECON → SCAN → ATTACK → REPORT
 
 ## ロードマップ
 
-### v2.2 - 検出力強化
+### ターゲットユーザー
+
+セキュリティに詳しくないが、安全なコードを書きたい開発者。
+
+- セキュリティ専門家は専用ツール（Burp Suite, Semgrep等）を使う
+- このプラグインは「**何を直すか**」「**どう直すか**」を知りたい開発者向け
+
+### v2.2 - 自動修正（次期リリース）
+
+**コンセプト**: 脆弱性を検出し、修正方法まで自動で提供。
 
 | Feature | Description |
 |---------|-------------|
-| ssti-attacker | Server-Side Template Injection (Blade/Jinja2/Twig) |
-| xxe-attacker | XML External Entity Injection |
-| wordpress-attacker | WordPress固有の脆弱性検出 |
+| 修正コード生成 | 脆弱性ごとに具体的なdiffを生成 |
+| 平易な説明 | 専門用語なしでリスクを説明 |
+| CVSS自動計算 | 重要度スコアで優先順位付け |
+| Issue自動作成 | GitHub/GitLab Issueを自動作成 |
+| ローカルファイル出力 | `reports/YYYYMMDD_security-scan.md` |
 
-### v2.3 - E2E検証拡張
+**出力先（自動検出）**:
+```
+.git/config リモート検出
+├── github.com  → GitHub Issue
+├── gitlab.com  → GitLab Issue
+└── その他/なし → ローカルファイル (reports/)
+```
+
+### v2.3 - CI/CD統合
 
 | Feature | Description |
 |---------|-------------|
-| e2e-sqli | SQLi E2Eテスト生成 |
-| e2e-ssti | SSTI E2Eテスト生成 |
-| dynamic全対応 | 全attackerにdynamicオプション追加 |
+| GitHub Actions | push/PR時に自動スキャン |
+| 依存関係スキャン | package.json, composer.jsonの既知脆弱性チェック |
+| PRコメント | Pull Requestに直接検出結果を投稿 |
 
-### v3.0 - レポート強化
+### 将来（バックログ）
 
 | Feature | Description |
 |---------|-------------|
-| CVSS自動計算 | 検出結果からCVSS 4.0スコア自動算出 |
-| レポート品質向上 | エグゼクティブサマリ、改善提案詳細化 |
-| PDF出力 | 客先提出可能なPDFレポート |
+| ssti-attacker | Server-Side Template Injection検出 |
+| xxe-attacker | XML External Entity検出 |
+| PDFレポート | 客先提出可能な脆弱性レポート |
 
 ## 設計原則
 

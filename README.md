@@ -175,11 +175,48 @@ See [CHANGELOG.md](CHANGELOG.md) for details.
 
 ## Roadmap
 
-| Version | Focus | Features |
-|---------|-------|----------|
-| v2.2 | Detection Enhancement | ssti-attacker, xxe-attacker, wordpress-attacker |
-| v2.3 | E2E Extension | e2e-sqli, e2e-ssti, dynamic for all attackers |
-| v3.0 | Report Enhancement | CVSS auto-calculation, PDF output |
+### Target Users
+
+Developers who are not security experts but want to ship secure code.
+
+- Security experts use specialized tools (Burp Suite, Semgrep, etc.)
+- This plugin is for developers who need guidance on **what to fix** and **how to fix it**
+
+### v2.2 - Auto-Fix (Next)
+
+**Concept**: Detect vulnerabilities and provide actionable fixes automatically.
+
+| Feature | Description |
+|---------|-------------|
+| Fix code generation | Generate concrete diff for each vulnerability |
+| Plain explanations | Explain risks without jargon |
+| CVSS auto-calculation | Prioritize by severity score |
+| Issue auto-creation | Auto-create GitHub/GitLab Issues |
+| Local file output | `reports/YYYYMMDD_security-scan.md` |
+
+**Output destination** (auto-detected):
+```
+.git/config remote detection
+├── github.com  → GitHub Issue
+├── gitlab.com  → GitLab Issue
+└── other/none  → Local file (reports/)
+```
+
+### v2.3 - CI/CD Integration
+
+| Feature | Description |
+|---------|-------------|
+| GitHub Actions | Auto-scan on push/PR |
+| Dependency scan | Check package.json, composer.json for known vulnerabilities |
+| PR comments | Post findings directly on Pull Requests |
+
+### Future (Backlog)
+
+| Feature | Description |
+|---------|-------------|
+| ssti-attacker | Server-Side Template Injection detection |
+| xxe-attacker | XML External Entity detection |
+| PDF reports | Client-ready vulnerability reports |
 
 ## License
 

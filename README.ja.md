@@ -165,6 +165,51 @@
 | v0.2.0 | auth/api-attacker、attack-report追加 |
 | v0.1.0 | MVP（recon, injection, xss, security-scan） |
 
+## ロードマップ
+
+### ターゲットユーザー
+
+セキュリティに詳しくないが、安全なコードを書きたい開発者。
+
+- セキュリティ専門家は専用ツール（Burp Suite, Semgrep等）を使う
+- このプラグインは「**何を直すか**」「**どう直すか**」を知りたい開発者向け
+
+### v2.2 - 自動修正（次期リリース）
+
+**コンセプト**: 脆弱性を検出し、修正方法まで自動で提供。
+
+| 機能 | 説明 |
+|------|------|
+| 修正コード生成 | 脆弱性ごとに具体的なdiffを生成 |
+| 平易な説明 | 専門用語なしでリスクを説明 |
+| CVSS自動計算 | 重要度スコアで優先順位付け |
+| Issue自動作成 | GitHub/GitLab Issueを自動作成 |
+| ローカルファイル出力 | `reports/YYYYMMDD_security-scan.md` |
+
+**出力先（自動検出）**:
+```
+.git/config リモート検出
+├── github.com  → GitHub Issue
+├── gitlab.com  → GitLab Issue
+└── その他/なし → ローカルファイル (reports/)
+```
+
+### v2.3 - CI/CD統合
+
+| 機能 | 説明 |
+|------|------|
+| GitHub Actions | push/PR時に自動スキャン |
+| 依存関係スキャン | package.json, composer.jsonの既知脆弱性チェック |
+| PRコメント | Pull Requestに直接検出結果を投稿 |
+
+### 将来（バックログ）
+
+| 機能 | 説明 |
+|------|------|
+| ssti-attacker | Server-Side Template Injection検出 |
+| xxe-attacker | XML External Entity検出 |
+| PDFレポート | 客先提出可能な脆弱性レポート |
+
 ## ライセンス
 
 MIT
