@@ -173,8 +173,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## Roadmap
 
-### v5.0 - CI/CD統合 (Planned)
+### Current Status: v4.0 (Stable)
 
-- 次期ロードマップ検討中
-
-詳細: [docs/plans/20260112_external-audit-replacement.md](docs/plans/20260112_external-audit-replacement.md)
+All planned features have been implemented. See README.md for details.

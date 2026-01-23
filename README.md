@@ -165,12 +165,15 @@ See [CHANGELOG.md](CHANGELOG.md) for details.
 
 | Version | Changes |
 |---------|---------|
+| v4.0.0 | context-review, pre-commit hooks |
+| v3.2.0 | sca-attacker, dast-crawler, attack-scenario, false-positive-filter |
+| v3.1.0 | Output schema unification |
+| v3.0.0 | CVSS auto-calculation, report quality improvement |
+| v2.3.0 | e2e-sqli, e2e-ssti, dynamic-verifier extension |
+| v2.2.0 | ssti-attacker, xxe-attacker, wordpress-attacker |
 | v2.1.0 | e2e-auth, e2e-ssrf, DOM/Stored XSS detection |
 | v2.0.0 | E2E test generation (e2e-xss, e2e-csrf) |
-| v1.2.0 | XSS dynamic verification |
-| v1.1.0 | vulnerability_class support |
 | v1.0.0 | All agents complete, dynamic testing |
-| v0.2.0 | auth/api-attacker, attack-report |
 | v0.1.0 | MVP (recon, injection, xss, security-scan) |
 
 ## Roadmap

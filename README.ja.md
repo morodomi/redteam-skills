@@ -159,10 +159,15 @@
 
 | Version | 内容 |
 |---------|------|
-| v1.2.0 | XSS動的検証追加 |
-| v1.1.0 | vulnerability_class対応 |
+| v4.0.0 | context-review、pre-commit hooks |
+| v3.2.0 | sca-attacker、dast-crawler、attack-scenario、false-positive-filter |
+| v3.1.0 | 出力スキーマ統一 |
+| v3.0.0 | CVSS自動計算、レポート品質向上 |
+| v2.3.0 | e2e-sqli、e2e-ssti、dynamic-verifier拡張 |
+| v2.2.0 | ssti-attacker、xxe-attacker、wordpress-attacker |
+| v2.1.0 | e2e-auth、e2e-ssrf、DOM/Stored XSS検出 |
+| v2.0.0 | E2Eテスト生成（e2e-xss、e2e-csrf） |
 | v1.0.0 | 全エージェント完成、動的テスト基盤 |
-| v0.2.0 | auth/api-attacker、attack-report追加 |
 | v0.1.0 | MVP（recon, injection, xss, security-scan） |
 
 ## ロードマップ
