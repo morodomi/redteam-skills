@@ -5,8 +5,8 @@
 | Item | Value |
 |------|-------|
 | Project | redteam-skills |
-| Current Version | 4.0.0 |
-| Last Updated | 2026-01-22 |
+| Current Version | 4.1.0 |
+| Last Updated | 2026-02-05 |
 
 ## Milestones
 
@@ -127,6 +127,13 @@
 | 52 | .claude/構造対応（tdd-skills互換） | Done |
 | 53 | docs: エージェント選択ガイド・使い方ドキュメント整備 | Done |
 
+### v4.1.1 - Auto Phase Transition
+
+| # | Issue | Status |
+|---|-------|--------|
+| 54 | Auto Phase Transition: security-scan完了後に自動でattack-report呼び出し | Done |
+| 55 | Parallel Scan Enhancement: 5→13エージェント並列実行 | Done |
+
 ### Closed (Won't Fix)
 
 | # | Issue | Reason |
@@ -140,6 +147,8 @@
 
 | Date | Feature | Issue | Status |
 |------|---------|-------|--------|
+| 2026-02-05 | auto-phase-transition | #54 | Done |
+| 2026-02-05 | parallel-scan-full | #55 | Done |
 | 2026-01-22 | plugin-version-fix | #51 | Done |
 | 2026-01-22 | .claude-structure | #52 | Done |
 | 2026-01-22 | agent-usage-docs | #53 | Done |

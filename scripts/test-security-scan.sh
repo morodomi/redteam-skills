@@ -84,30 +84,24 @@ else
 fi
 
 # TC-05: Agent integration (recon-agent, injection-attacker, xss-attacker) is documented
-if [ -f "$SKILL_FILE" ]; then
-    has_recon_agent=$(grep -ci "recon-agent" "$SKILL_FILE" 2>/dev/null || echo 0)
-    has_injection=$(grep -ci "injection-attacker" "$SKILL_FILE" 2>/dev/null || echo 0)
-    has_xss=$(grep -ci "xss-attacker" "$SKILL_FILE" 2>/dev/null || echo 0)
+# Check in SKILL.md or reference.md (Progressive Disclosure)
+has_recon_agent=$(grep -ci "recon-agent" "$SKILL_FILE" "$REFERENCE_FILE" 2>/dev/null | grep -v ":0$" | wc -l)
+has_injection=$(grep -ci "injection-attacker" "$SKILL_FILE" "$REFERENCE_FILE" 2>/dev/null | grep -v ":0$" | wc -l)
+has_xss=$(grep -ci "xss-attacker" "$SKILL_FILE" "$REFERENCE_FILE" 2>/dev/null | grep -v ":0$" | wc -l)
 
-    if [ "$has_recon_agent" -gt 0 ] && [ "$has_injection" -gt 0 ] && [ "$has_xss" -gt 0 ]; then
-        test_case "TC-05" "Agent integration (recon-agent, injection-attacker, xss-attacker) is documented" 0
-    else
-        test_case "TC-05" "Agent integration (recon-agent, injection-attacker, xss-attacker) is documented" 1
-    fi
+if [ "$has_recon_agent" -gt 0 ] && [ "$has_injection" -gt 0 ] && [ "$has_xss" -gt 0 ]; then
+    test_case "TC-05" "Agent integration (recon-agent, injection-attacker, xss-attacker) is documented" 0
 else
     test_case "TC-05" "Agent integration (recon-agent, injection-attacker, xss-attacker) is documented" 1
 fi
 
 # TC-06: Output format (JSON schema) exists
-if [ -f "$SKILL_FILE" ]; then
-    has_json_block=$(grep -c '```json' "$SKILL_FILE" 2>/dev/null || echo 0)
-    has_vulnerabilities=$(grep -c '"vulnerabilities"' "$SKILL_FILE" 2>/dev/null || echo 0)
+# Check in SKILL.md or reference.md (Progressive Disclosure)
+has_json_block=$(grep -c '```json' "$SKILL_FILE" "$REFERENCE_FILE" 2>/dev/null | grep -v ":0$" | wc -l)
+has_vulnerabilities=$(grep -c '"vulnerabilities"' "$SKILL_FILE" "$REFERENCE_FILE" 2>/dev/null | grep -v ":0$" | wc -l)
 
-    if [ "$has_json_block" -gt 0 ] && [ "$has_vulnerabilities" -gt 0 ]; then
-        test_case "TC-06" "Output format (JSON schema) exists" 0
-    else
-        test_case "TC-06" "Output format (JSON schema) exists" 1
-    fi
+if [ "$has_json_block" -gt 0 ] && [ "$has_vulnerabilities" -gt 0 ]; then
+    test_case "TC-06" "Output format (JSON schema) exists" 0
 else
     test_case "TC-06" "Output format (JSON schema) exists" 1
 fi

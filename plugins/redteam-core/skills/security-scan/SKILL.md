@@ -1,11 +1,11 @@
 ---
 name: security-scan
-description: セキュリティスキャンを実行。RECON→SCAN→REPORTワークフロー。
+description: セキュリティスキャンを実行。RECON→SCAN→REPORT→AUTO TRANSITIONワークフロー。
 ---
 
 # Security Scan
 
-セキュリティスキャンを実行するスキル。エージェントを連携して脆弱性を検出。
+セキュリティスキャンを実行するスキル。エージェントを連携して脆弱性を検出し、自動でレポートを生成。
 
 ## Usage
 
@@ -13,93 +13,71 @@ description: セキュリティスキャンを実行。RECON→SCAN→REPORTワ�
 /security-scan           # 現在のディレクトリをスキャン
 /security-scan ./src     # 指定ディレクトリをスキャン
 
+# フルスキャン（13エージェント並列）
+/security-scan ./src --full-scan
+
 # 動的テスト有効化（--target必須）
 /security-scan ./src --dynamic --target http://localhost:8000
 
-# XSS動的検証も有効化
-/security-scan ./src --dynamic --enable-dynamic-xss --target http://localhost:8000
+# レポート自動生成をスキップ
+/security-scan ./src --no-auto-report
 
-# SCAスキャンをスキップ
-/security-scan ./src --no-sca
+# レポート後にE2Eテスト自動生成
+/security-scan ./src --auto-e2e
 ```
 
 ## Options
 
-| Option | Description | Required |
-|--------|-------------|----------|
-| --dynamic | SQLi動的テストを有効化 | No |
-| --enable-dynamic-xss | XSS動的テストを有効化 | No |
-| --target | 検証対象URL | Yes (if --dynamic or --enable-dynamic-xss) |
-| --no-sca | SCAスキャンをスキップ | No |
+| Option | Description | Default |
+|--------|-------------|---------|
+| --full-scan | 全13エージェント並列実行 | Off (5 core agents) |
+| --no-auto-report | 自動attack-reportをスキップ | 有効 |
+| --auto-e2e | レポート後に自動E2E生成 | Off |
+| --dynamic | SQLi動的テストを有効化 | Off |
+| --enable-dynamic-xss | XSS動的テストを有効化 | Off |
+| --target | 検証対象URL | Required if --dynamic |
+| --no-sca | SCAスキャンをスキップ | Off |
 
 ## Workflow
 
 ```
 1. RECON Phase
-   └── recon-agent で情報収集
-       - エンドポイント列挙
-       - フレームワーク検出
-       - 攻撃優先度付け
+   └── recon-agent
 
-2. SCAN Phase（並行実行）
-   ├── injection-attacker（SQLi検出）
-   ├── xss-attacker（XSS検出）
-   ├── crypto-attacker（暗号・設定脆弱性）
-   ├── error-attacker（例外処理脆弱性）
-   └── sca-attacker（依存関係脆弱性検出）
+2. SCAN Phase (parallel)
+   ├── Core Agents (default: 5)
+   └── Extended Agents (--full-scan: +8)
 
 3. REPORT Phase
-   └── 結果を統合してJSON出力
+   └── JSON output
+
+4. AUTO TRANSITION (unless --no-auto-report)
+   └── Skill(redteam-core:attack-report)
+
+5. [OPTIONAL] E2E (if --auto-e2e)
+   └── Skill(redteam-core:generate-e2e)
 ```
+
+## Auto Transition
+
+スキャン完了後、自動的にattack-reportを呼び出す:
+
+```
+検出件数: Critical 0, High 2, Medium 1
+
+レポートを生成します。
+
+Skill(redteam-core:attack-report)
+```
+
+`--no-auto-report` でスキップ可能。
 
 ## Agent Integration
 
 | Phase | Agent | Role |
 |-------|-------|------|
 | RECON | recon-agent | 情報収集・優先度付け |
-| SCAN | injection-attacker | SQLインジェクション検出 |
-| SCAN | xss-attacker | XSS脆弱性検出 |
-| SCAN | crypto-attacker | 暗号・設定脆弱性検出 |
-| SCAN | error-attacker | 例外処理脆弱性検出 |
-| SCAN | sca-attacker | 依存関係脆弱性検出（OSV API） |
-
-## Output Format
-
-```json
-{
-  "metadata": {
-    "scan_id": "<uuid>",
-    "scanned_at": "<timestamp>",
-    "target_directory": "<path>"
-  },
-  "recon": {
-    "framework": "Laravel",
-    "endpoints_count": 15,
-    "high_priority_count": 5
-  },
-  "sca": {
-    "packages_scanned": 45,
-    "vulnerable_count": 3,
-    "ecosystems": ["npm", "Packagist"]
-  },
-  "summary": {
-    "total": 3,
-    "critical": 0,
-    "high": 2,
-    "medium": 1,
-    "low": 0
-  },
-  "vulnerabilities": [
-    {
-      "agent": "injection-attacker",
-      "id": "SQLI-001",
-      "severity": "high",
-      "file": "app/Controllers/UserController.php",
-      "line": 45
-    }
-  ]
-}
-```
+| SCAN | 5 core / 13 full | 脆弱性検出（並行実行） |
 
 ## Reference
 

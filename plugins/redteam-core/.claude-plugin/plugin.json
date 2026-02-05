@@ -1,7 +1,7 @@
 {
   "name": "redteam-core",
   "description": "Security audit automation. RECON → SCAN → ATTACK → REPORT",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "author": {
     "name": "morodomi"
   },

@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [4.1.0] - 2026-02-05
+
+### Added
+- Auto Phase Transition: security-scan完了後に自動でattack-report呼び出し (#54)
+  - デフォルトで有効
+  - `--no-auto-report` でスキップ可能
+  - `--auto-e2e` でE2Eテスト自動生成も可能
+- Parallel Scan Enhancement: 5エージェントから13エージェント並列実行に拡張 (#55)
+  - Core Agents (5): injection, xss, crypto, error, sca
+  - Extended Agents (8): auth, api, file, ssrf, csrf, ssti, xxe, wordpress
+  - `--full-scan` オプションで全13エージェント実行
+
 ## [4.0.0] - 2026-01-22
 
 ### Added

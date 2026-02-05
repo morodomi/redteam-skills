@@ -19,15 +19,30 @@ recon-agentを使用して対象コードベースの情報を収集。
 
 ### Phase 2: SCAN
 
-RECONの結果に基づき、以下のエージェントを**並行実行**:
+RECONの結果に基づき、エージェントを**並行実行**。
+
+#### Core Agents (default: 5)
 
 | Agent | Detection Target |
 |-------|-----------------|
 | injection-attacker | SQL Injection (Union, Error, Boolean-blind) |
-| xss-attacker | Reflected XSS, Sanitization Missing |
+| xss-attacker | Reflected XSS, DOM XSS, Stored XSS |
 | crypto-attacker | Debug mode, Weak hash/crypto, Default credentials, CORS |
 | error-attacker | Empty catch, Fail-open, Generic exception |
 | sca-attacker | Dependency vulnerabilities (OSV API) |
+
+#### Extended Agents (--full-scan: +8)
+
+| Agent | Detection Target |
+|-------|-----------------|
+| auth-attacker | Authentication bypass, JWT vulnerabilities |
+| api-attacker | BOLA, BFLA, Mass Assignment |
+| file-attacker | Path Traversal, LFI, RFI |
+| ssrf-attacker | SSRF, Cloud metadata access |
+| csrf-attacker | CSRF token missing, SameSite cookie |
+| ssti-attacker | Jinja2, Twig, Blade, ERB template injection |
+| xxe-attacker | XML External Entity injection |
+| wordpress-attacker | WordPress-specific vulnerabilities |
 
 **並行実行の利点**:
 - スキャン時間の短縮
@@ -42,12 +57,6 @@ RECONの結果に基づき、以下のエージェントを**並行実行**:
 | dynamic-verifier (SQLi) | SQLiエラーベース検証 | --dynamic |
 | dynamic-verifier (XSS) | XSS反射検出検証 | --enable-dynamic-xss |
 
-**XSS動的検証** (`--enable-dynamic-xss`):
-- ペイロード挿入→レスポンスで反射確認
-- エスケープなし反射 → confirmed
-- エンコード済み or 反射なし → not_vulnerable
-- Content-Type: text/html のみ検証
-
 **安全対策**:
 - --target必須（明示的なURL指定）
 - 非破壊ペイロードのみ使用
@@ -57,6 +66,31 @@ RECONの結果に基づき、以下のエージェントを**並行実行**:
 ### Phase 3: REPORT
 
 全エージェントの結果を統合し、JSON形式で出力。
+
+### Phase 4: AUTO TRANSITION
+
+スキャン完了後、自動的に次のスキルを呼び出す。
+
+**デフォルト動作**:
+```
+検出件数: Critical 0, High 2, Medium 1
+
+レポートを生成します。
+
+Skill(redteam-core:attack-report)
+```
+
+**context-reviewが必要な場合**:
+```
+曖昧な検出が3件あります。context-reviewを実行しますか? [Y/n]
+
+→ Y の場合: Skill(redteam-core:context-review)
+→ 完了後: Skill(redteam-core:attack-report)
+```
+
+**オプション**:
+- `--no-auto-report`: 自動レポート生成をスキップ
+- `--auto-e2e`: レポート後にE2Eテスト自動生成
 
 ## Output Schema
 
@@ -160,4 +194,12 @@ RECONの結果に基づき、以下のエージェントを**並行実行**:
 - [crypto-attacker](../../agents/crypto-attacker.md)
 - [error-attacker](../../agents/error-attacker.md)
 - [sca-attacker](../../agents/sca-attacker.md)
+- [auth-attacker](../../agents/auth-attacker.md)
+- [api-attacker](../../agents/api-attacker.md)
+- [file-attacker](../../agents/file-attacker.md)
+- [ssrf-attacker](../../agents/ssrf-attacker.md)
+- [csrf-attacker](../../agents/csrf-attacker.md)
+- [ssti-attacker](../../agents/ssti-attacker.md)
+- [xxe-attacker](../../agents/xxe-attacker.md)
+- [wordpress-attacker](../../agents/wordpress-attacker.md)
 - [dynamic-verifier](../../agents/dynamic-verifier.md)
