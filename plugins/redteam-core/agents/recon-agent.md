@@ -100,6 +100,7 @@ The following data must **NOT** be collected:
 
 ## Workflow
 
+0. **Check past scan context**: Check auto memory for previous scan context. If found, use known false positive patterns and project context to adjust attack priorities. If no memory exists or `--no-memory` is set, skip this step and proceed to Step 1.
 1. **Detect Framework**: Analyze project files to identify framework
 2. **Extract Endpoints**: Parse routing files for all endpoints
 3. **Identify Parameters**: Find user input points

@@ -1,6 +1,6 @@
 ---
 name: security-scan
-description: セキュリティスキャンを実行。RECON→SCAN→REPORT→AUTO TRANSITIONワークフロー。
+description: セキュリティスキャンを実行。RECON→SCAN→REPORT→AUTO TRANSITION→LEARNワークフロー。
 ---
 
 # Security Scan
@@ -37,6 +37,7 @@ description: セキュリティスキャンを実行。RECON→SCAN→REPORT→A
 | --enable-dynamic-xss | XSS動的テストを有効化 | Off |
 | --target | 検証対象URL | Required if --dynamic |
 | --no-sca | SCAスキャンをスキップ | Off |
+| --no-memory | スキャン知見の読み書きをスキップ | Off |
 
 ## Workflow
 
@@ -56,6 +57,9 @@ description: セキュリティスキャンを実行。RECON→SCAN→REPORT→A
 
 5. [OPTIONAL] E2E (if --auto-e2e)
    └── Skill(redteam-core:generate-e2e)
+
+6. LEARN Phase (unless --no-memory)
+   └── Save scan context to auto memory (details: reference.md)
 ```
 
 ## Auto Transition

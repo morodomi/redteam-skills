@@ -179,6 +179,72 @@ Skill(redteam-core:attack-report)
 | Agent failure | Continue with other agents, note in metadata |
 | Unknown framework | Set framework = "unknown", continue scan |
 
+## Memory Integration
+
+スキャン知見を auto memory に蓄積し、次回スキャンで活用する。
+
+### Overview
+
+- **読み取り**: RECON Phase の Step 0 で過去のスキャンコンテキストを参照
+- **書き込み**: LEARN Phase でスキャン結果の知見を保存
+- `--no-memory` で読み書き両方を無効化
+
+### LEARN Phase
+
+AUTO TRANSITION / E2E 完了後に実行。スキャン結果から以下を auto memory に保存する。
+
+**実行タイミング**:
+```
+AUTO TRANSITION → [OPTIONAL] E2E → LEARN Phase
+```
+
+**メモリ参照時の表示**:
+```
+Past scan context loaded: 2 FP patterns, last scan 2026-02-06 (11 findings, 3 FP)
+```
+
+**初回スキャン時の表示**:
+```
+No previous scan context found. Scan results will be saved for future reference.
+```
+
+### Memory Convention (v1.0)
+
+<!-- Memory-Convention: v1.0 -->
+
+auto memory に以下の構造で保存する:
+
+```markdown
+## Security Scan Context
+
+### Project
+- Framework: Laravel 11.x
+- Database: MySQL 8.0
+- Auth: Sanctum
+- Custom Sanitizers: App\Helpers::sanitize() (XSS safe)
+
+### Known False Positive Patterns
+- Blade {{ }} auto-escaping (XSS, confidence: 0.95)
+- Eloquent ->where() with bindings (SQLi, confidence: 0.95)
+
+### Scan History
+- 2026-02-06: 3C/5H/2M/1L (11 total, 3 FP)
+```
+
+### Memory Data Exclusion
+
+以下のデータは LEARN Phase でメモリに保存してはならない:
+
+- 脆弱性の code snippets に含まれるシークレット（API_KEY, PASSWORD 等）
+- 生のペイロード（SQLi, XSS 等の攻撃文字列）
+- 認証情報を含むファイルパス
+- recon-agent の Sensitive Data Exclusion リストに該当するデータ
+
+### Known Limitations
+
+- false-positive-filter との直接統合は将来課題（現在は auto memory 経由の間接参照）
+- Claude Code auto memory の仕様変更に依存
+
 ## Limitations
 
 - 動的テストはSQLiエラーベース検出、XSS反射検出に対応

@@ -5,8 +5,8 @@
 | Item | Value |
 |------|-------|
 | Project | redteam-skills |
-| Current Version | 4.1.0 |
-| Last Updated | 2026-02-05 |
+| Current Version | 4.2.0 |
+| Last Updated | 2026-02-06 |
 
 ## Milestones
 
@@ -134,6 +134,14 @@
 | 54 | Auto Phase Transition: security-scan完了後に自動でattack-report呼び出し | Done |
 | 55 | Parallel Scan Enhancement: 5→13エージェント並列実行 | Done |
 
+### v4.2.0 - Scan Memory Integration
+
+| # | Issue | Status |
+|---|-------|--------|
+| - | LEARN Phase: スキャン知見をauto memoryに蓄積 | Done |
+| - | RECON Step 0: 過去スキャンコンテキスト参照 | Done |
+| - | Memory Convention v1.0 定義 | Done |
+
 ### Closed (Won't Fix)
 
 | # | Issue | Reason |
@@ -147,6 +155,7 @@
 
 | Date | Feature | Issue | Status |
 |------|---------|-------|--------|
+| 2026-02-06 | scan-memory-integration | - | Done |
 | 2026-02-05 | auto-phase-transition | #54 | Done |
 | 2026-02-05 | parallel-scan-full | #55 | Done |
 | 2026-01-22 | plugin-version-fix | #51 | Done |
