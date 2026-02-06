@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [4.2.0] - 2026-02-06
+
+### Added
+- Scan Memory Integration: スキャン知見をauto memoryに蓄積・活用
+  - LEARN Phase: スキャン完了後にプロジェクトコンテキスト・FPパターン・履歴を保存
+  - RECON Step 0: 過去のスキャンコンテキストを参照して攻撃優先度を調整
+  - Memory Convention v1.0: 保存データ構造の標準化
+  - `--no-memory` オプションでメモリ読み書きを無効化
+  - Memory Data Exclusion: シークレット・攻撃ペイロード等の保存禁止ルール
+
 ## [4.1.0] - 2026-02-05
 
 ### Added
@@ -185,6 +195,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## Roadmap
 
-### Current Status: v4.0 (Stable)
+### Current Status: v4.2 (Stable)
 
 All planned features have been implemented. See README.md for details.
