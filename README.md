@@ -1,104 +1,73 @@
 # redteam-skills
 
-A Claude Code Plugin for automated security auditing.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Version](https://img.shields.io/badge/version-4.2.0-blue.svg)](CHANGELOG.md)
+
+**AI-powered security auditing for your codebase.** Run one command, get OWASP Top 10 coverage with 18 specialized agents across 6 languages.
 
 [日本語版 README](README.ja.md)
 
-## Overview
+> **18** security agents | **6** languages | **OWASP Top 10** full coverage | **CVSS 4.0** auto-scoring
 
-While **tdd-skills** supports development workflows (Blue Team / defense), **redteam-skills** automates security auditing (Red Team / offense).
-
-| Plugin | Role | Analogy |
-|--------|------|---------|
-| [tdd-skills](https://github.com/morodomi/tdd-skills) | Development workflow | Internal code review |
-| redteam-skills | Security audit | External attack simulation |
-
-## Installation
-
-### Prerequisites
-
-- [Claude Code](https://claude.ai/claude-code) installed
-
-### Plugin Installation
+## Quick Start
 
 ```bash
-# Step 1: Add marketplace
+# 1. Install the plugin
 /plugin marketplace add morodomi/redteam-skills
-
-# Step 2: Install plugin
 /plugin install redteam-core@morodomi-redteam-skills
-```
 
-Or use interactive UI:
-```bash
-/plugin
-```
-
-## Usage
-
-### Security Scan
-
-```bash
-# Scan current directory
+# 2. Run a security scan
 /security-scan
 
-# Scan specific directory
-/security-scan ./src
-
-# Enable dynamic testing (SQLi verification)
-/security-scan ./src --dynamic --target http://localhost:8000
-
-# Enable XSS dynamic verification
-/security-scan ./src --dynamic --enable-dynamic-xss --target http://localhost:8000
+# 3. Generate a report
+/attack-report
 ```
 
-**Workflow:**
+That's it. The scan runs 13 agents in parallel, detects vulnerabilities, and produces a JSON + Markdown report with CVSS scores and remediation guidance.
+
+## How It Works
 
 ```
 1. RECON Phase
    └── recon-agent: Endpoint enumeration, framework detection
 
-2. SCAN Phase (parallel execution)
-   ├── injection-attacker: SQLi, Command Injection
-   ├── xss-attacker: Reflected/DOM/Stored XSS
-   ├── auth-attacker: Authentication bypass
-   ├── csrf-attacker: CSRF
-   ├── crypto-attacker: Cryptographic vulnerabilities
-   └── error-attacker: Exception handling vulnerabilities
+2. SCAN Phase (13 agents in parallel)
+   ├── Core Agents (5): injection, xss, crypto, error, sca
+   └── Extended Agents (8): auth, api, file, ssrf, csrf, ssti, xxe, wordpress
 
-3. VERIFY Phase (optional)
-   └── dynamic-verifier: SQLi/XSS dynamic verification
+3. VERIFY Phase
+   ├── false-positive-filter: Remove false positives
+   ├── dynamic-verifier: SQLi/XSS/Auth/CSRF/SSRF runtime verification
+   └── attack-scenario: Vulnerability chain analysis
 
 4. REPORT Phase
-   └── Result aggregation, JSON output
-```
-
-### Report Generation
-
-```bash
-# Generate vulnerability report
-/attack-report
+   └── CVSS 4.0 scoring, JSON + Markdown output
 ```
 
 ## Agents
 
-| Agent | Target Vulnerabilities | OWASP Top 10 |
-|-------|----------------------|--------------|
-| recon-agent | Reconnaissance | - |
-| injection-attacker | SQL/Command Injection | A03:2021 |
+| Agent | Target | OWASP |
+|-------|--------|-------|
+| recon-agent | Endpoint enumeration, tech stack detection | - |
+| injection-attacker | SQL/NoSQL/Command/LDAP Injection | A03:2021 |
 | xss-attacker | Reflected/Stored/DOM XSS | A03:2021 |
 | auth-attacker | Authentication bypass, JWT vulnerabilities | A07:2021 |
 | csrf-attacker | CSRF, Cookie attributes | A01:2021 |
 | api-attacker | BOLA/BFLA/Mass Assignment | A01:2021 |
 | file-attacker | Path Traversal, LFI/RFI | A01:2021 |
 | ssrf-attacker | SSRF, Cloud metadata | A10:2021 |
+| ssti-attacker | Server-Side Template Injection | A03:2021 |
+| xxe-attacker | XML External Entity Injection | A05:2021 |
+| wordpress-attacker | WordPress-specific vulnerabilities | A06:2021 |
 | crypto-attacker | Weak cryptography, Debug mode | A02:2021 |
 | error-attacker | Improper exception handling | A05:2021 |
-| dynamic-verifier | SQLi/XSS dynamic verification | - |
+| sca-attacker | Dependency vulnerabilities (OSV API) | A06:2021 |
+| dast-crawler | Playwright-based URL discovery | - |
+| dynamic-verifier | SQLi/XSS/Auth/CSRF/SSRF runtime verification | - |
+| false-positive-filter | Context-aware false positive removal | - |
+| attack-scenario | Vulnerability chain analysis | - |
 
 ## Output Format
-
-### Vulnerability Report (JSON)
 
 ```json
 {
@@ -107,11 +76,6 @@ Or use interactive UI:
     "scan_id": "550e8400-e29b-41d4-a716-446655440000",
     "scanned_at": "2025-12-25T10:00:00Z",
     "target_directory": "/path/to/project"
-  },
-  "recon": {
-    "framework": "Laravel",
-    "endpoints_count": 15,
-    "high_priority_count": 5
   },
   "summary": {
     "total": 3,
@@ -128,6 +92,7 @@ Or use interactive UI:
       "vulnerability_class": "sql-injection",
       "cwe_id": "CWE-89",
       "severity": "critical",
+      "cvss_score": 9.8,
       "file": "app/Controllers/UserController.php",
       "line": 45,
       "code": "$db->query(\"SELECT * FROM users WHERE id = \" . $_GET['id'])",
@@ -140,17 +105,60 @@ Or use interactive UI:
 
 ## Supported Languages
 
-- PHP (Laravel, Symfony, WordPress)
-- Python (Django, Flask, FastAPI)
-- JavaScript/TypeScript (Express, Next.js, NestJS)
-- Go (Gin, Echo)
-- Java (Spring Boot)
+| Language | Frameworks |
+|----------|-----------|
+| PHP | Laravel, Symfony, WordPress |
+| Python | Django, Flask, FastAPI |
+| JavaScript | Express, Next.js |
+| TypeScript | NestJS, Express |
+| Go | Gin, Echo |
+| Java | Spring Boot |
+
+## Advanced Usage
+
+```bash
+# Full scan with all 13 agents
+/security-scan ./src --full-scan
+
+# Dynamic testing with runtime verification
+/security-scan ./src --dynamic --target http://localhost:8000
+
+# Auto-generate E2E tests from scan results
+/security-scan ./src --auto-e2e
+
+# Scan with memory (learns from previous scans)
+/security-scan ./src  # memory enabled by default
+/security-scan ./src --no-memory  # disable memory
+```
 
 ## Documentation
 
 - [Agent Guide](docs/AGENT_GUIDE.md) - 18 agents usage guide and framework matrix
 - [Workflow](docs/WORKFLOW.md) - RECON/SCAN/ATTACK/REPORT workflow details
 - [FAQ](docs/FAQ.md) - Frequently asked questions
+
+## Version History
+
+See [CHANGELOG.md](CHANGELOG.md) for full details.
+
+| Version | Highlights |
+|---------|-----------|
+| v4.2.0 | Scan memory integration (learn from previous scans) |
+| v4.1.0 | Auto phase transition, 13-agent parallel scan |
+| v4.0.0 | Interactive context review, pre-commit hooks |
+| v3.2.0 | SCA, DAST crawler, attack scenarios, false-positive filter |
+| v3.0.0 | CVSS 4.0 auto-calculation, executive summary reports |
+| v2.2.0 | SSTI, XXE, WordPress detection |
+| v2.0.0 | E2E test generation (Playwright) |
+| v1.0.0 | All core agents, dynamic testing |
+
+## Target Users
+
+Developers who want to ship secure code without being security experts.
+
+- Security professionals use specialized tools (Burp Suite, Semgrep, etc.)
+- This plugin provides automated OWASP-based scanning with actionable remediation guidance
+- Works as a pre-commit security gate in your development workflow
 
 ## References
 
@@ -159,49 +167,11 @@ Or use interactive UI:
 - [OWASP ASVS](https://owasp.org/www-project-application-security-verification-standard/)
 - [CWE Top 25](https://cwe.mitre.org/top25/)
 
-## Version History
+## Related Projects
 
-See [CHANGELOG.md](CHANGELOG.md) for details.
-
-| Version | Changes |
-|---------|---------|
-| v4.0.0 | context-review, pre-commit hooks |
-| v3.2.0 | sca-attacker, dast-crawler, attack-scenario, false-positive-filter |
-| v3.1.0 | Output schema unification |
-| v3.0.0 | CVSS auto-calculation, report quality improvement |
-| v2.3.0 | e2e-sqli, e2e-ssti, dynamic-verifier extension |
-| v2.2.0 | ssti-attacker, xxe-attacker, wordpress-attacker |
-| v2.1.0 | e2e-auth, e2e-ssrf, DOM/Stored XSS detection |
-| v2.0.0 | E2E test generation (e2e-xss, e2e-csrf) |
-| v1.0.0 | All agents complete, dynamic testing |
-| v0.1.0 | MVP (recon, injection, xss, security-scan) |
-
-## Roadmap
-
-### Current Status: v4.0 (Stable)
-
-All planned features have been implemented:
-
-- OWASP Top 10 complete coverage
-- Static analysis for 6 languages
-- Dynamic verification (SQLi, XSS)
-- E2E test generation
-- SCA (dependency scanning)
-- CVSS auto-calculation
-- Pre-commit hooks
-
-### Target Users
-
-Developers who are not security experts but want to ship secure code.
-
-- Security experts use specialized tools (Burp Suite, Semgrep, etc.)
-- This plugin provides automated scanning with remediation guidance
+- [tdd-skills](https://github.com/morodomi/tdd-skills) - TDD development workflow automation (Blue Team)
+- [anthropics/skills](https://github.com/anthropics/skills) - Official Claude Code skills
 
 ## License
 
 MIT
-
-## Related Projects
-
-- [tdd-skills](https://github.com/morodomi/tdd-skills) - TDD development workflow automation
-- [anthropics/skills](https://github.com/anthropics/skills) - Official Claude Code skills

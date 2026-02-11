@@ -155,6 +155,7 @@
 
 | Date | Feature | Issue | Status |
 |------|---------|-------|--------|
+| 2026-02-10 | readme-improvement | - | Done |
 | 2026-02-10 | release-management | - | Done |
 | 2026-02-06 | scan-memory-integration | - | Done |
 | 2026-02-05 | auto-phase-transition | #54 | Done |
