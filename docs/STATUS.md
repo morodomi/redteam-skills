@@ -155,6 +155,7 @@
 
 | Date | Feature | Issue | Status |
 |------|---------|-------|--------|
+| 2026-02-10 | docs-sync | - | Done |
 | 2026-02-10 | readme-improvement | - | Done |
 | 2026-02-10 | release-management | - | Done |
 | 2026-02-06 | scan-memory-integration | - | Done |

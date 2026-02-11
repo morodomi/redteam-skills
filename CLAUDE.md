@@ -5,7 +5,7 @@
 ## 技術スタック
 
 - **配布形式**: Claude Code Plugins
-- **対象言語**: PHP, Python, TypeScript, Go（監査対象）
+- **対象言語**: PHP, Python, JavaScript, TypeScript, Go, Java（監査対象）
 - **参照基準**: OWASP Top 10, OWASP ASVS, CWE Top 25
 
 ## プロジェクト構造
@@ -16,15 +16,25 @@ redteam-skills/
 │   └── redteam-core/          # メインプラグイン
 │       ├── .claude-plugin/
 │       │   └── plugin.json
-│       ├── agents/            # 攻撃エージェント
+│       ├── agents/            # 18 攻撃エージェント
 │       │   ├── recon-agent.md
 │       │   ├── injection-attacker.md
-│       │   ├── auth-attacker.md
 │       │   ├── xss-attacker.md
+│       │   ├── auth-attacker.md
+│       │   ├── csrf-attacker.md
 │       │   ├── api-attacker.md
 │       │   ├── file-attacker.md
 │       │   ├── ssrf-attacker.md
-│       │   └── csrf-attacker.md
+│       │   ├── ssti-attacker.md
+│       │   ├── xxe-attacker.md
+│       │   ├── wordpress-attacker.md
+│       │   ├── crypto-attacker.md
+│       │   ├── error-attacker.md
+│       │   ├── sca-attacker.md
+│       │   ├── dast-crawler.md
+│       │   ├── dynamic-verifier.md
+│       │   ├── false-positive-filter.md
+│       │   └── attack-scenario.md
 │       ├── skills/            # スキル定義
 │       │   ├── security-scan/
 │       │   └── attack-report/
@@ -54,12 +64,22 @@ RECON → SCAN → ATTACK → REPORT
 |-------------|------|
 | recon-agent | エンドポイント列挙、技術スタック特定 |
 | injection-attacker | SQL/NoSQL/Command/LDAP Injection |
-| auth-attacker | 認証バイパス、JWT脆弱性 |
 | xss-attacker | Reflected/Stored/DOM-based XSS |
+| auth-attacker | 認証バイパス、JWT脆弱性 |
+| csrf-attacker | CSRF、Cookie属性 |
 | api-attacker | BOLA/BFLA/Mass Assignment |
 | file-attacker | Path Traversal、LFI/RFI |
 | ssrf-attacker | SSRF、クラウドメタデータ |
-| csrf-attacker | CSRF、Cookie属性 |
+| ssti-attacker | Server-Side Template Injection |
+| xxe-attacker | XML External Entity Injection |
+| wordpress-attacker | WordPress固有の脆弱性 |
+| crypto-attacker | 弱い暗号、デバッグモード |
+| error-attacker | 不適切な例外処理 |
+| sca-attacker | 依存関係の脆弱性（OSV API） |
+| dast-crawler | PlaywrightベースのURL自動発見 |
+| dynamic-verifier | SQLi/XSS/Auth/CSRF/SSRF 動的検証 |
+| false-positive-filter | コンテキストベースの誤検知除外 |
+| attack-scenario | 脆弱性チェーン分析 |
 
 ## 品質基準
 
@@ -135,7 +155,7 @@ RECON → SCAN → ATTACK → REPORT
 
 ## ロードマップ
 
-### 現在のステータス: v4.0（安定版）
+### 現在のステータス: v4.2.0（安定版）
 
 計画された全機能を実装済み:
 
