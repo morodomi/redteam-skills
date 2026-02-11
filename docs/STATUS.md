@@ -6,7 +6,7 @@
 |------|-------|
 | Project | redteam-skills |
 | Current Version | 4.2.0 |
-| Last Updated | 2026-02-06 |
+| Last Updated | 2026-02-10 |
 
 ## Milestones
 
@@ -155,6 +155,7 @@
 
 | Date | Feature | Issue | Status |
 |------|---------|-------|--------|
+| 2026-02-10 | release-management | - | Done |
 | 2026-02-06 | scan-memory-integration | - | Done |
 | 2026-02-05 | auto-phase-transition | #54 | Done |
 | 2026-02-05 | parallel-scan-full | #55 | Done |
